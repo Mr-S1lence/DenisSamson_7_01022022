@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './../styles/App.css';
+import React, { useEffect, useState } from 'react';
+import Routes from "./Routes";
+import { UidContext } from "./AppContext";
+import axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Bonjour</h1>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [uid, setUid] = useState(null);
+
+    //Controle du token de l'user
+    useEffect( () => {
+        const fetchToken = async() => {
+            await axios({
+                method: "get",
+                url: `${process.env.REACT_APP_API_URL}jwtid`,
+                withCredentials: true
+            })
+            .then((res) => {
+                    console.log("test");
+                    console.log(res);
+                    setUid(res.data);
+                })
+            .catch((err) => console.log("No token"))
+        }
+        fetchToken();
+    }, [uid])
+
+    return (
+        <UidContext.Provider value={uid}>
+            <Routes />
+
+        </UidContext.Provider>
+    );
+};
 
 export default App;

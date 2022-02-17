@@ -9,7 +9,21 @@ const userRoutes = require('./routes/user'); */
 
 //connexion bdd
 
+var mysql = require('mysql');
 
+console.log('Get connection ...');
+
+var conn = mysql.createConnection({
+  database: 'projet7',
+  host: "localhost",
+  user: "root",
+  password: "Azerty35000"
+});
+
+conn.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected to database!");
+});
 
 const app = express();
 

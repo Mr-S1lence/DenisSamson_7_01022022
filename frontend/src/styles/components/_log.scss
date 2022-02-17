@@ -1,0 +1,37 @@
+
+.form-container {
+  ul{
+    display: flex;
+    li {
+      background-color: #FFD7D7;
+      border: solid transparent 2px;
+      border-radius: 30px;
+      margin: 1rem;
+      padding: 0.5rem;
+      &:hover{
+        border: solid #FD2D01 2px;
+      }
+    }
+  }
+
+  .active-btn {
+    background-color: #FD2D01;
+  }
+}
+
+/* .img-container img{
+  height: 10rem;
+} */
+
+/* .log-container{
+  display: flex;
+} */
+
+/* .connection-form{
+  display: flex;
+  justify-content: flex-end;
+} */
+
+/* .form-container{
+  width: 10rem;
+} */
