@@ -1,5 +1,9 @@
 $color-1: #ff7b77;
 
+.fa{
+  color: #FD2D01;
+}
+
 * {
     margin: 0.3rem;
     padding: 0;
@@ -12,4 +16,8 @@ $color-1: #ff7b77;
     &::selection {
       background: $color-1;
     }
+  }
+
+  body{
+    margin: 0 25rem 0 25rem;
   }
