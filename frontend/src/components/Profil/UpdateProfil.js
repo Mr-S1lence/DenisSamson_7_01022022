@@ -8,8 +8,9 @@ const UpdateProfil = () => {
 
     return (
         <div>
+            <LeftNav />
             <div className='profil-container'>
-                <LeftNav />
+                
                 <h1>Profil de {userData.pseudo}</h1>
                 <div className='update-container'>
                     <div className='left-part'>

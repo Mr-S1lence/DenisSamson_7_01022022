@@ -9,7 +9,7 @@ const LeftNav = () => {
       <div className="icons">
         <div className="icons-bis">
           <NavLink
-            to="/home"
+            to="/"
             className={({ isActive }) => "left-nav" + (isActive ? ' active-left-nav' : '')}
           >
             <FontAwesomeIcon icon={faHouse} size="lg" color="#FD2D01" />
