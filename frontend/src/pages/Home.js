@@ -1,11 +1,14 @@
 import React from "react";
 import LeftNav from "../components/leftNav";
+import Thread from "../components/Thread";
 
 const Home = () => {
     return (
-        <div>
+        <div className="home">
             <LeftNav />
-            Hello depuis Home
+            <div className="main">
+                <Thread />
+            </div>
         </div>
     )
 }

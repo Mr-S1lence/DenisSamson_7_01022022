@@ -12,21 +12,21 @@ const LeftNav = () => {
             to="/"
             className={({ isActive }) => "left-nav" + (isActive ? ' active-left-nav' : '')}
           >
-            <FontAwesomeIcon icon={faHouse} size="lg" color="#FD2D01" />
+            <FontAwesomeIcon icon={faHouse} size="2x" color="#FD2D01" />
           </NavLink>
           <br />
           <NavLink
            to="/trending"
             className={({ isActive }) => "left-nav"+ (isActive ? ' active-left-nav' : '')}
           >
-            <FontAwesomeIcon icon={faRocket} size="lg" color="#FD2D01" />
+            <FontAwesomeIcon icon={faRocket} size="2x" color="#FD2D01" />
           </NavLink>
           <br />
           <NavLink
             to="/profil"
             className={({ isActive }) => "left-nav" + (isActive ? ' active-left-nav' : '')}
           >
-            <FontAwesomeIcon icon={faUser} size="lg" color="#FD2D01" />
+            <FontAwesomeIcon icon={faUser} size="2x" color="#FD2D01" />
           </NavLink>
         </div>
       </div>

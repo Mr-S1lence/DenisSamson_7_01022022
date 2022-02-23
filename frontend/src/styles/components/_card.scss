@@ -1,0 +1,20 @@
+.card-left img{
+    width: 6rem;
+    height: 6rem;
+    min-width: 6rem;
+    min-height: 6rem;
+    border-radius: 50%;
+    border: solid 1px #FD2D01;
+}
+
+.card-container{
+
+    border: solid 1px #FD2D01;
+    border-radius: 2rem;
+    padding: 0.5rem;
+}
+
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+}
