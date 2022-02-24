@@ -11,7 +11,7 @@ import LikeButton from "./LikeButton";
 const Card = ({ post }) => {
   const [isLoading, setIsLoading] = useState(true);
   const usersData = useSelector((state) => state.usersReducer);
-  const userData = useSelector((state) => state.userReducer);
+/*   const userData = useSelector((state) => state.userReducer); */
 
   useEffect(() => {
     !isEmpty(usersData[0]) && setIsLoading(false);
@@ -30,6 +30,7 @@ const Card = ({ post }) => {
                 usersData
                   .map((user) => {
                     if (user._id === post.posterId) return user.picture;
+                    else return null
                   })
                   .join("") //entre chaque élément on mets des strings vide
               }
@@ -43,6 +44,7 @@ const Card = ({ post }) => {
                   {!isEmpty(usersData[0]) &&
                     usersData.map((user) => {
                       if (user._id === post.posterId) return user.pseudo;
+                      else return null
                     })}
                 </h3>
               </div>
