@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCommentDots,
-  faSpinner,
-  faThumbsUp,
+  faSpinner
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
-import { dateParser, isEmpty } from "./Utils";
+import { dateParser, isEmpty } from "./../Utils";
+import LikeButton from "./LikeButton";
 
 const Card = ({ post }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +31,7 @@ const Card = ({ post }) => {
                   .map((user) => {
                     if (user._id === post.posterId) return user.picture;
                   })
-                  .join("") //entre chaque élément on des strings vide
+                  .join("") //entre chaque élément on mets des strings vide
               }
               alt="img profil"
             />
@@ -72,7 +72,7 @@ const Card = ({ post }) => {
                 />
                 <span>{post.comments.length}</span>
               </div>
-              <FontAwesomeIcon icon={faThumbsUp} size="lg" color="#FD2D01" />
+              <LikeButton post={post}/>
             </div>
           </div>
         </>
