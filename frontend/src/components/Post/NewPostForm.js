@@ -12,6 +12,7 @@ const NewPostForm = () => {
   const [video, setVideo] = useState("");
   const [file, setFile] = useState();
   const userData = useSelector((state) => state.userReducer);
+  const error = useSelector((state) => state.errorReducer.postError);
   const dispatch = useDispatch();
 
   const handlePicture = (e) => {
@@ -50,26 +51,29 @@ const NewPostForm = () => {
     setFile("");
   };
 
-  const handleVideo = () => {
-    let findLink = message.split(" ");
-    for (let i = 0; i < findLink.length; i++) {
-      if (
-        findLink[i].includes("https://yout") ||
-        findLink[i].includes("https://www.yout")
-      ) {
-        let embed = findLink[i].replace("watch?v=", "embed/");
-        setVideo(embed.split("&")[0]);
-        //Suppression du lien de la vidéo
-        findLink.splice(i, 1);
-        setMessage(findLink.join(" "));
-        //Empecher l'ajout d'une photo si vidéo
-        setPostPicture("");
-      }
-    }
-  };
+
 
   useEffect(() => {
     if (!isEmpty(userData)) setIsLoading(false);
+
+    const handleVideo = () => {
+        let findLink = message.split(" ");
+        for (let i = 0; i < findLink.length; i++) {
+          if (
+            findLink[i].includes("https://yout") ||
+            findLink[i].includes("https://www.yout")
+          ) {
+            let embed = findLink[i].replace("watch?v=", "embed/");
+            setVideo(embed.split("&")[0]);
+            //Suppression du lien de la vidéo
+            findLink.splice(i, 1);
+            setMessage(findLink.join(" "));
+            //Empecher l'ajout d'une photo si vidéo
+            setPostPicture("");
+          }
+        }
+      };
+
     handleVideo();
   }, [userData, message, video]);
 
@@ -133,6 +137,8 @@ const NewPostForm = () => {
                   <button onClick={() => setVideo("")}>Supprimer vidéo</button>
                 )}
               </div>
+              {!isEmpty(error.format) && <p>{error.format}</p>}
+              {!isEmpty(error.maxSize) && <p>{error.maxSize}</p>}
               <div className="btn-send">
                 {message || postPicture || video.length > 20 ? (
                   <button className="cancel" onClick={cancelPost}>

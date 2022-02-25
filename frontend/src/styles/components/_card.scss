@@ -1,20 +1,37 @@
-.card-left img{
-    width: 6rem;
-    height: 6rem;
-    min-width: 6rem;
-    min-height: 6rem;
-    border-radius: 50%;
-    border: solid 1px #FD2D01;
-}
-
 .card-container{
-
+    display: flex;
     border: solid 1px #FD2D01;
     border-radius: 2rem;
     padding: 0.5rem;
 }
 
+.card-left img{
+    width: 4rem;
+    height: 4rem;
+    min-width: 4rem;
+    min-height: 4rem;
+    border-radius: 50%;
+    border: solid 1px #FD2D01;
+}
+
+.card-right{
+    width: 100%;
+}
+
+.card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
 .card-footer{
     display: flex;
     justify-content: space-between;
+}
+
+.button-container{
+    display: flex;
+    justify-content: flex-end;
 }
