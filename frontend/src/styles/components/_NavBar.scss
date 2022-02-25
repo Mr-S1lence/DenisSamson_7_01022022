@@ -5,6 +5,12 @@
     align-items: center;
 }
 
+.user-img img{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
 .nav-container ul{
     display: flex;
     align-items: center;
