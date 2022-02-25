@@ -10,11 +10,14 @@ import { dateParser, isEmpty } from "./../Utils";
 import LikeButton from "./LikeButton";
 import { updatePost } from "../../actions/post.actions";
 import DeleteCard from "./DeleteCard";
+import CardComments from "./CardComments";
 
 const Card = ({ post }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isUpdated, setIsUpdated] = useState(false);
   const [textUpdate, setTextUpdate] = useState(null);
+  const [showComments, setShowComments] = useState(false);
+  const userData = useSelector((state) => state.userReducer);
   const usersData = useSelector((state) => state.usersReducer);
   const dispatch = useDispatch();
 
@@ -24,7 +27,7 @@ const Card = ({ post }) => {
     }
     setIsUpdated(false);
   };
-  const userData = useSelector((state) => state.userReducer);
+  
 
   useEffect(() => {
     !isEmpty(usersData[0]) && setIsLoading(false);
@@ -104,7 +107,10 @@ const Card = ({ post }) => {
               </div>
             )}
             <div className="card-footer">
-              <div className="comment-icon">
+              <div
+                className="comment-icon"
+                onClick={() => setShowComments(!showComments)}
+              >
                 <FontAwesomeIcon
                   icon={faCommentDots}
                   size="lg"
@@ -114,6 +120,7 @@ const Card = ({ post }) => {
               </div>
               <LikeButton post={post} />
             </div>
+            {showComments && <CardComments post={post} />}
           </div>
         </>
       )}
