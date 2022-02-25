@@ -1,7 +1,8 @@
 import { faImage, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addPost, getPosts } from "../../actions/post.actions";
 import { isEmpty, timestampParser } from "../Utils";
 
 const NewPostForm = () => {
@@ -11,10 +12,36 @@ const NewPostForm = () => {
   const [video, setVideo] = useState("");
   const [file, setFile] = useState();
   const userData = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
 
-  const handlePicture = () => {};
+  const handlePicture = (e) => {
+    //prévisualisation
+    setPostPicture(URL.createObjectURL(e.target.files[0]));
+    //req.file
+    setFile(e.target.files[0]);
+    //suppression d'une vidéo si image
+    setVideo("");
+  };
 
-  const handlePost = () => {};
+  const handlePost = async () => {
+    if (message || postPicture || video) {
+      const data = new FormData();
+      data.append("posterId", userData._id);
+      data.append("message", message);
+      if (file) data.append("file", file);
+      data.append("video", video);
+
+      //Envoie à la BDD
+      await dispatch(addPost(data));
+      //récupération des id uniques
+      dispatch(getPosts(data));
+      //Remise à 0
+      cancelPost();
+
+    } else {
+      alert("Veuillez entrer un message");
+    }
+  };
 
   const cancelPost = () => {
     setMessage("");
@@ -23,9 +50,28 @@ const NewPostForm = () => {
     setFile("");
   };
 
+  const handleVideo = () => {
+    let findLink = message.split(" ");
+    for (let i = 0; i < findLink.length; i++) {
+      if (
+        findLink[i].includes("https://yout") ||
+        findLink[i].includes("https://www.yout")
+      ) {
+        let embed = findLink[i].replace("watch?v=", "embed/");
+        setVideo(embed.split("&")[0]);
+        //Suppression du lien de la vidéo
+        findLink.splice(i, 1);
+        setMessage(findLink.join(" "));
+        //Empecher l'ajout d'une photo si vidéo
+        setPostPicture("");
+      }
+    }
+  };
+
   useEffect(() => {
     if (!isEmpty(userData)) setIsLoading(false);
-  }, [userData]);
+    handleVideo();
+  }, [userData, message, video]);
 
   return (
     <div className="post-container">
@@ -88,7 +134,7 @@ const NewPostForm = () => {
                 )}
               </div>
               <div className="btn-send">
-                {message || postPicture || video.length > 0 ? (
+                {message || postPicture || video.length > 20 ? (
                   <button className="cancel" onClick={cancelPost}>
                     Annuler
                   </button>
