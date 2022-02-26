@@ -4,8 +4,8 @@ const path = require('path'); //Donne accès au chemin de notre système de fich
 const bdd = require('dotenv').config();
 
 
-/* const stuffRoutes = require('./routes/stuff');
-const userRoutes = require('./routes/user'); */
+/* const stuffRoutes = require('./routes/stuff'); */
+const userRoutes = require('./routes/user.routes');
 
 //connexion bdd
 
@@ -32,10 +32,11 @@ Il s'agit d'un système de sécurité qui, par défaut,
 bloque les appels HTTP entre des serveurs différents, 
 ce qui empêche donc les requêtes malveillantes d'accéder à des ressources sensibles */
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    next();
+  res.setHeader('Access-Control-Allow-Origin', process.env.CLIENT_URL);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD, POST, PUT, DELETE, PATCH, OPTIONS');
+  next();
 });
 
 app.use(express.json());//Permet d'accèder au corps de la requête. 
@@ -46,5 +47,7 @@ app.use(express.json());//Permet d'accèder au corps de la requête.
 
 app.use('/api/sauces', stuffRoutes);
 app.use('/api/auth', userRoutes); */
+
+app.use('/api/user', userRoutes);
 
 module.exports = app;
