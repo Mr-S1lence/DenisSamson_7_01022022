@@ -18,7 +18,7 @@ exports.signUp = async (req, res) => {
   const salt = await bcrypt.hash(password, 10);
   const uid = uuidv4();
 
-  if (await checkEmail(email) == true) {
+  if ((await checkEmail(email)) == true) {
     const sql =
       "INSERT INTO `users` (`user_id`, `pseudo`, `email`, `password`, `createdAt`) VALUES ('" +
       uid +
@@ -46,8 +46,41 @@ exports.signUp = async (req, res) => {
       res.status(200).send({ err });
     }
   } else {
-    let errors = { pseudo: '', email: '', password: ''}
+    let errors = { pseudo: "", email: "", password: "" };
     errors.email = "Email incorrect";
     res.status(200).send({ errors });
   }
+};
+
+module.exports.signIn = async (req, res) => {
+  const db = database.getDB();
+  const { email, password } = req.body;
+  const sql =
+    "SELECT pseudo, password, user_id FROM users WHERE email ='" + email + "';";
+
+  db.query(sql, [email], async (err, results) => {
+    let errors = { email: "", password: "" };
+
+    if (err) {
+      return res.status(404).json({ err });
+    }
+    if (!results[0]) {
+      errors.email = "Email inconnu !";
+      return res.status(200).json({ errors });
+    }
+    if (results[0]) {
+      bcrypt
+        .compare(password, results[0].password) //User trouvé : comparration des mdp avec bcrypt
+        .then((valid) => {
+          if (!valid) {
+            errors.password = "Mot de passe incorrect !";
+            return res.status(200).json({ errors });
+          }
+          const token = createToken(results[0].user_id);
+          res.cookie("jwt", token, { httpOnly: true, maxAge });
+          res.status(200).json({ user: results[0].user_id });
+        })
+        .catch((err) => res.status(500).json({ err })); //Erreur serveur
+    }
+  });
 };

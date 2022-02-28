@@ -1,7 +1,7 @@
 module.exports.signUpErrors = (err) => {
-    let errors = { email: ''}
-    console.log(err.sqlMessage);
-    if(err.sqlMessage.includes('Duplicate entry'))
+  let errors = { email: "" };
+  console.log(err.sqlMessage);
+  if (err.sqlMessage.includes("Duplicate entry"))
     errors.email = "Email déjà inscrit";
-    return errors;
-}
+  return errors;
+};

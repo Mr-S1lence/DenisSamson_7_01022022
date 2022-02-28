@@ -5,7 +5,7 @@ const password = require('../middleware/password.js');
 
 
 router.post('/register', password, authController.signUp);
-/* router.post('/login', authController.signIn);
-router.get('/logout', authController.logout); */
+router.post('/login', authController.signIn);
+/* router.get('/logout', authController.logout); */
 
 module.exports = router;

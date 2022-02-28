@@ -17,7 +17,7 @@ module.exports = (req, res, next) => {
         next();
     }else{
         return res
-        .status(400)
+        .status(200)
         .json({
             errors : {pseudo: '',email: '', password : `Le mot de passe doit avoir huit caractères minimum dont une majuscule, une minuscule et deux chiffres.
             ${schema.validate('req.body.password', { list: true })}`}

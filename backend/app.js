@@ -2,6 +2,7 @@ const express = require('express');
 
 const path = require('path'); //Donne accès au chemin de notre système de fichier
 const bdd = require('dotenv').config();
+const database = require("./config/db");
 
 
 /* const stuffRoutes = require('./routes/stuff'); */
@@ -12,15 +13,9 @@ const userRoutes = require('./routes/user.routes');
 var mysql = require('mysql');
 
 console.log('Get connection ...');
+const db = database.getDB();
 
-var conn = mysql.createConnection({
-  database: 'projet7',
-  host: "localhost",
-  user: "root",
-  password: "Azerty35000"
-});
-
-conn.connect(function(err) {
+db.connect(function(err) {
   if (err) throw err;
   console.log("Connected to database!");
 });
