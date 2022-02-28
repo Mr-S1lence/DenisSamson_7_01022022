@@ -9,7 +9,9 @@ const Home = () => {
     const uid = useContext(UidContext);
 
     return (
-        <div className="home">
+        <div>
+        {uid ? (
+            <div className="home">
             <LeftNav />
             <div className="main">
                 <div className="home-header">
@@ -17,6 +19,15 @@ const Home = () => {
                 </div>
                 <Thread />
             </div>
+        </div>
+        ) : (    
+            <div className="log-container">
+            <Log signin={false} signup={true} />
+                <div className="img-container">
+
+                </div>
+            </div>
+        )}
         </div>
     )
 }
