@@ -41,7 +41,6 @@ exports.signUp = async (req, res) => {
         }
       });
     } catch (err) {
-      /* const errors = signUpErrors(err); */
       console.log("erreur catch");
       res.status(200).send({ err });
     }
@@ -56,7 +55,7 @@ module.exports.signIn = async (req, res) => {
   const db = database.getDB();
   const { email, password } = req.body;
   const sql =
-    "SELECT pseudo, password, user_id FROM users WHERE email ='" + email + "';";
+    "SELECT password, user_id FROM users WHERE email ='" + email + "';";
 
   db.query(sql, [email], async (err, results) => {
     let errors = { email: "", password: "" };

@@ -10,5 +10,6 @@ router.get('/logout', authController.logout);
 
 router.get('/', userController.getAllUsers);
 router.get('/:id', userController.userInfo);
+router.put('/:id', userController.updateUser);
 
 module.exports = router;
