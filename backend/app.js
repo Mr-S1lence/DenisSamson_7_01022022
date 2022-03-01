@@ -8,6 +8,7 @@ const {requireAuth} = require('./middleware/auth.middleware');
 
 /* const stuffRoutes = require('./routes/stuff'); */
 const userRoutes = require('./routes/user.routes');
+const postRoutes = require('./routes/post.routes');
 
 //connexion bdd
 
@@ -54,5 +55,6 @@ app.get('/jwtid', requireAuth, (req, res) => {
 })
 
 app.use('/api/user', userRoutes);
+app.use('/api/post', postRoutes);
 
 module.exports = app;

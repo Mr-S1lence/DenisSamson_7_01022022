@@ -18,7 +18,7 @@ module.exports.userInfo = async (req, res) => {
     "SELECT " + userData + " FROM users WHERE user_id = '" +
     req.params.id +
     "';";
-  /*     console.log(req.params); */
+   /*     console.log(req.params); */
    db.query(sql, async (err, result) => {
     console.log(err);
     if (err == null) {
