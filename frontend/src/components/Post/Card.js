@@ -116,7 +116,7 @@ const Card = ({ post }) => {
                   size="lg"
                   color="#FD2D01"
                 />
-                <span>{post.comments.length}</span>
+                {/* <span>{post.comments.length}</span> */}
               </div>
               <LikeButton post={post} />
             </div>

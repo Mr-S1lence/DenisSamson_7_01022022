@@ -41,7 +41,6 @@ exports.signUp = async (req, res) => {
         }
       });
     } catch (err) {
-      console.log("erreur catch");
       res.status(200).send({ err });
     }
   } else {

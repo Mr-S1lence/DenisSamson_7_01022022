@@ -6,13 +6,11 @@ const { uploadErrors } = require("../utils/errors.utils");
 const pipeline = promisify(require("stream").pipeline);
 
 module.exports.readPost = (req, res) => {
-  const sql = "SELECT post_id AS _id, message, picture, video, createdAt, updatedAt FROM posts ORDER BY createdAt DESC";
-  console.log(sql);
+  const sql =
+    "SELECT post_id AS _id, posterId, message, picture, video, createdAt, updatedAt FROM posts ORDER BY createdAt DESC";
   try {
     db.query(sql, async (err, result) => {
-      /* console.log(err); */
       if (err == null) {
-        console.log(result);
         res.json(result);
       } else {
         console.log(err);
@@ -38,7 +36,7 @@ module.exports.createPost = async (req, res) => {
     return res.status(201).json({ errors });
   }
   const fileName = req.body.posterId + Date.now() + ".jpg";
-  /* console.log(req.body.posterId); */
+
   await pipeline(
     req.file.stream,
     fs.createWriteStream(
@@ -49,7 +47,6 @@ module.exports.createPost = async (req, res) => {
   const post_Id = Date.now() + Math.random();
   const picture = req.file !== null ? "./uploads/posts/" + fileName : "";
 
-/*   console.log(picture); */
   const sql =
     "INSERT INTO `posts` (`post_Id`, `posterId`, `message`, `picture`, `video`, `createdAt`) VALUES ('" +
     post_Id +
@@ -63,17 +60,6 @@ module.exports.createPost = async (req, res) => {
     req.body.video +
     "', NOW());";
 
- /*    console.log(sql); */
-
-  /*     const newPost = new PostModel({
-      posterId: req.body.posterId,
-      message: req.body.message,
-      picture: req.file !== null ? "./uploads/posts/" + fileName : "",
-      video: req.body.video,
-      likers: [],
-      comments: [],
-    }); */
-
   try {
     db.query(sql, async (err, result) => {
       /* console.log(err); */
@@ -86,4 +72,56 @@ module.exports.createPost = async (req, res) => {
   } catch (err) {
     return res.status(400).send(err);
   }
+};
+
+module.exports.likePost = async (req, res) => {
+  const { userId, postId } = req.body;
+
+  const sql =
+    "SELECT * FROM `likes` WHERE likes.userId = '"+userId+"' AND likes.postId = '"+postId+"';";
+  console.log(sql);
+  try {
+    db.query(sql, async (err, result) => {
+      if (err == null) {
+        if (result.length === 0){
+          const sql = "INSERT INTO `likes` (postId, userId) VALUES ('" + req.body.postId + "','" + req.body.userId + "');";
+          db.query(sql, (err, result) => {
+            if (err == null) {
+              res.json(result[0]);
+            } else {
+              console.log(err);
+            }
+          });          
+        }else{
+          const sql = "DELETE FROM `likes` WHERE likes.userId = '"+userId+"' AND likes.postId = '"+postId+"';";
+          console.log(sql);
+          db.query(sql, (err, result) => {
+            if (err == null) {
+              res.json(result[0]);
+            } else {
+              console.log(err);
+            }
+          }); 
+        }
+      } else {
+        console.log(err);
+      }
+    });
+  } catch (err) {
+    return res.status(400).send(err);
+  }
+
+  /*   const sql = "INSERT INTO `likes` (postId, userId) VALUES ('" + req.body.postId + "','" + req.body.userId + "');"
+  console.log(sql);
+  try {
+    db.query(sql, async (err, result) => {
+      if (err == null) {
+        res.json(result[0]);
+      } else {
+        console.log(err);
+      }
+    });
+  } catch (err) {
+    return res.status(400).send(err);
+  } */
 };

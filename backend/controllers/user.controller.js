@@ -20,7 +20,6 @@ module.exports.userInfo = async (req, res) => {
     "';";
    /*     console.log(req.params); */
    db.query(sql, async (err, result) => {
-    console.log(err);
     if (err == null) {
       res.json(result[0]);
     } else {
