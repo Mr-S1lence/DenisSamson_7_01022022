@@ -8,9 +8,7 @@ export const UNLIKE_POST = "UNLIKE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
 
-//comments
-export const ADD_COMMENT = "ADD_COMMENT";
-export const EDIT_COMMENT = "EDIT_COMMENT";
+
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
 //errors
@@ -99,7 +97,7 @@ export const deletePost = (postId) => {
 
 //comments
 
-export const addComment = (postId, commenterId, text, commenterPseudo) => {
+/* export const addComment = (postId, commenterId, text, commenterPseudo) => {
   return (dispatch) => {
     return axios({
       method: "patch",
@@ -112,20 +110,8 @@ export const addComment = (postId, commenterId, text, commenterPseudo) => {
       .catch((err) => console.log(err));
   };
 };
+ */
 
-export const editComment = (postId, commentId, text) => {
-  return (dispatch) => {
-    return axios({
-      method: "patch",
-      url: `${process.env.REACT_APP_API_URL}api/post/edit-comment-post/${postId}`,
-      data: { commentId, text },
-    })
-      .then((res) => {
-        dispatch({ type: EDIT_COMMENT, payload: { postId, commentId, text } });
-      })
-      .catch((err) => console.log(err));
-  };
-};
 
 export const deleteComment = (postId, commentId) => {
   return (dispatch) => {

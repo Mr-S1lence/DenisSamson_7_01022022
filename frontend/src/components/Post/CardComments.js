@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment, getPosts } from "../../actions/post.actions";
-import { dateParser, isEmpty, timestampParser } from "../Utils";
+import { getPosts } from "../../actions/post.actions";
+import { dateParser, isEmpty } from "../Utils";
 import EditDeleteComment from "./EditDeleteComment";
-import { getComments } from "../../actions/comment.actions";
+import { addComment, getComments } from "../../actions/comment.actions";
 
 const CardComments = ({ post }) => {
   const [text, setText] = useState("");
@@ -26,7 +26,7 @@ const CardComments = ({ post }) => {
 
     if (text) {
       dispatch(addComment(post._id, userData._id, text, userData.pseudo))
-        .then(() => dispatch(getPosts()))
+        .then(() => dispatch(getComments(post._id)))
         .then(() => setText(""));
     }
   };

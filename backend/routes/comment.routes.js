@@ -4,9 +4,8 @@ const multer = require('multer');
 const upload = multer();
 
 
-
-
-router.get('/:id', commentController.readComment);
 router.post('/:id', commentController.createComment);
+router.get('/:id', commentController.readComment);
+router.put('/edit-comment/', commentController.updateComment);
 
 module.exports = router;

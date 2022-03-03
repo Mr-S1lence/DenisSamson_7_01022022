@@ -2,7 +2,8 @@ import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteComment, editComment } from "../../actions/post.actions";
+import { deleteComment } from "../../actions/post.actions";
+import { editComment } from "../../actions/comment.actions";
 import { UidContext } from "../AppContext";
 
 const EditDeleteComment = ({ comment, postId }) => {
