@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment, getPosts } from "../../actions/post.actions";
-import { isEmpty, timestampParser } from "../Utils";
+import { dateParser, isEmpty, timestampParser } from "../Utils";
 import EditDeleteComment from "./EditDeleteComment";
+import { getComments } from "../../actions/comment.actions";
 
 const CardComments = ({ post }) => {
   const [text, setText] = useState("");
   const userData = useSelector((state) => state.userReducer);
   const usersData = useSelector((state) => state.usersReducer);
+  const [loadComment, setLoadComment] = useState(true);
   const dispatch = useDispatch();
+  
+  const comments = useSelector((state) => state.commentReducer);
+
+  useEffect(() => {
+    if (loadComment) {
+      dispatch(getComments(post._id));
+      setLoadComment(false);
+    }
+  }, [loadComment, dispatch, post]);
 
   const handleComment = (e) => {
     e.preventDefault();
@@ -22,42 +33,46 @@ const CardComments = ({ post }) => {
 
   return (
     <div className="comments-container">
-      {post.comments.map((comment) => {
-        return (
-          <div
-            className={
-              comment.commenterId === userData._id
-                ? "comment-container client"
-                : "comment-container"
-            }
-            key={comment._id}
-          >
-            <div className="left-part">
-              <img
-                src={
-                  !isEmpty(usersData[0]) &&
-                  usersData
-                    .map((user) => {
-                      if (user._id === comment.commenterId) return user.picture;
-                      else return null;
-                    })
-                    .join("") //entre chaque élément on mets des strings vide
-                }
-                alt="commenter-pic"
-              />
-            </div>
-            <div className="right-part">
-              <div className="comment-header">
-                <div className="pseudo">
-                  <h3>{comment.commenterPseudo}</h3>
-                </div>
-                <span>{timestampParser(comment.timestamp)}</span>
+        {!isEmpty(comments[0]) &&
+      comments.map((comment) => {
+        if (post._id === comment.postId) {
+          return (
+            <div
+              className={
+                comment.commenterId === userData._id
+                  ? "comment-container client"
+                  : "comment-container"
+              }
+              key={comment._id}
+            >
+              <div className="left-part">
+                <img
+                  src={
+                    !isEmpty(usersData[0]) &&
+                    usersData
+                      .map((user) => {
+                        if (user._id === comment.commenterId)
+                          return user.picture;
+                        else return null;
+                      })
+                      .join("") //entre chaque élément on mets des strings vide
+                  }
+                  alt="commenter-pic"
+                />
               </div>
-              <p>{comment.text}</p>
-              <EditDeleteComment comment={comment} postId={post._id} />
+              <div className="right-part">
+                <div className="comment-header">
+                  <div className="pseudo">
+                    <h3>{comment.commenterPseudo}</h3>
+                  </div>
+                  <span>{dateParser(comment.createdAt)}</span>
+                </div>
+                <p>{comment.text}</p>
+                <EditDeleteComment comment={comment} postId={post._id} />
+              </div>
             </div>
-          </div>
-        );
+          );
+        }else{return null;}
       })}
       {userData._id && (
         <form action="" onSubmit={handleComment} className="comment-form">

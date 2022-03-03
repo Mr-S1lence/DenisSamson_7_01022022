@@ -92,6 +92,24 @@ module.exports.updatePost = (req, res) => {
   });
 };
 
+module.exports.deletePost = (req, res) => {
+  console.log(req);
+  console.log(req.params.id);
+  const sql = "DELETE FROM posts WHERE post_id ='"+ req.params.id +"';";
+  console.log(sql);
+  db.query(sql, async (err, result) => {
+    if (err == null) {
+      res.json(result[0]);
+    } else {
+      console.log(err);
+    }
+  });
+};
+
+
+
+
+
 module.exports.likePost = async (req, res) => {
   const { userId, postId } = req.body;
 

@@ -30,22 +30,15 @@ module.exports.userInfo = async (req, res) => {
 
 
 module.exports.updateUser = async (req, res) => {
-  console.log(req.params.id);
-  console.log(req.body.bio);
-
   const sql =
     "UPDATE `users` SET `bio` = '" +
     req.body.bio +
     "' WHERE `user_id` = '" +
     req.params.id +
-    "';"
-/*      SELECT " + userData + " FROM `users` WHERE `user_id` = '" +
-    req.params.id +"';"; */
-    console.log(sql);
+    "';";
+
 
   db.query(sql, async (err, result) => {
-    console.log(result);
-    console.log(err);
     if (err == null) {
       res.json(result[0]);
     } else {

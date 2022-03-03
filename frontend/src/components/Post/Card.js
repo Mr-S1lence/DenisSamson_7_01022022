@@ -12,11 +12,13 @@ import { updatePost } from "../../actions/post.actions";
 import DeleteCard from "./DeleteCard";
 import CardComments from "./CardComments";
 
+
 const Card = ({ post }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isUpdated, setIsUpdated] = useState(false);
   const [textUpdate, setTextUpdate] = useState(null);
   const [showComments, setShowComments] = useState(false);
+  
   const userData = useSelector((state) => state.userReducer);
   const usersData = useSelector((state) => state.usersReducer);
   const dispatch = useDispatch();
@@ -28,6 +30,7 @@ const Card = ({ post }) => {
     setIsUpdated(false);
   };
   
+
 
   useEffect(() => {
     !isEmpty(usersData[0]) && setIsLoading(false);
