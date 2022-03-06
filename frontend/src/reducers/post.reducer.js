@@ -3,7 +3,8 @@ import {
   DELETE_POST,
   GET_POSTS,
   LIKE_POST,
-  UNLIKE_POST,
+    UNLIKE_POST,
+  GET_LIKES_POST_USER,
   UPDATE_POST,
 } from "../actions/post.actions";
 
@@ -23,7 +24,9 @@ export default function postReducer(state = initialState, action) {
         }
         return post;
       });
-    case UNLIKE_POST:
+    case GET_LIKES_POST_USER:
+      return action.payload;
+        case UNLIKE_POST:
       return state.map((post) => {
         if (post._id === action.payload.postId) {
           return {

@@ -6,10 +6,15 @@ const { uploadErrors } = require("../utils/errors.utils");
 const pipeline = promisify(require("stream").pipeline);
 
 module.exports.readPost = (req, res) => {
-  const getPosts =
-    "SELECT post_id AS _id, posterId, message, picture, video, createdAt, updatedAt FROM posts ORDER BY createdAt DESC";
+  const dataPost =
+    "p.post_id AS _id, p.posterId, p.message, p.picture, p.video, p.createdAt, p.updatedAt";
+  const sql =
+    "SELECT " +
+    dataPost +
+    ", GROUP_CONCAT(COALESCE(likes.userId, '')) likers FROM posts p LEFT JOIN likes ON p.post_id = likes.postId GROUP BY `post_id` ORDER BY createdAt DESC";
+
   try {
-    db.query(getPosts, async (err, result) => {
+    db.query(sql, async (err, result) => {
       if (err == null) {
         res.json(result);
       } else {
@@ -95,7 +100,7 @@ module.exports.updatePost = (req, res) => {
 module.exports.deletePost = (req, res) => {
   console.log(req);
   console.log(req.params.id);
-  const sql = "DELETE FROM posts WHERE post_id ='"+ req.params.id +"';";
+  const sql = "DELETE FROM posts WHERE post_id ='" + req.params.id + "';";
   console.log(sql);
   db.query(sql, async (err, result) => {
     if (err == null) {
@@ -107,55 +112,52 @@ module.exports.deletePost = (req, res) => {
 };
 
 
-
-
-
 module.exports.likePost = async (req, res) => {
-  const { userId, postId } = req.body;
-
+  console.log("like");
+  console.log(req.body);
+  console.log(req.body.userId);
   const sql =
-    "SELECT * FROM `likes` WHERE likes.userId = '" +
-    userId +
+    "INSERT INTO `likes` (postId, userId) VALUES ('" +
+    req.params.id +
+    "','" +
+    req.body.userId +
+    "');";
+
+  db.query(sql, async (err, result) => {
+    if (err == null) {
+      res.json(result[0]);
+    } else {
+      console.log(err);
+    }
+  });
+};
+
+module.exports.unlikePost = async (req, res) => {
+  console.log("unlike");
+  const sql =
+    "DELETE FROM `likes` WHERE likes.userId = '" +
+    req.body.id +
     "' AND likes.postId = '" +
-    postId +
+    req.params.id +
     "';";
-  try {
-    db.query(sql, async (err, result) => {
-      if (err == null) {
-        if (result.length === 0) {
-          const sql =
-            "INSERT INTO `likes` (postId, userId) VALUES ('" +
-            req.body.postId +
-            "','" +
-            req.body.userId +
-            "');";
-          db.query(sql, (err, result) => {
-            if (err == null) {
-              res.json(result[0]);
-            } else {
-              console.log(err);
-            }
-          });
-        } else {
-          const sql =
-            "DELETE FROM `likes` WHERE likes.userId = '" +
-            userId +
-            "' AND likes.postId = '" +
-            postId +
-            "';";
-          db.query(sql, (err, result) => {
-            if (err == null) {
-              res.json(result[0]);
-            } else {
-              console.log(err);
-            }
-          });
-        }
-      } else {
-        console.log(err);
-      }
-    });
-  } catch (err) {
-    return res.status(400).send(err);
-  }
+
+  db.query(sql, async (err, result) => {
+    if (err == null) {
+      res.json(result[0]);
+    } else {
+      console.log(err);
+    }
+  });
+};
+
+module.exports.getLikePostByUser = async (req, res) => {
+  const sql = "SELECT postId FROM likes WHERE userId ='" + req.params.id + "';";
+  console.log(sql);
+  db.query(sql, async (err, result) => {
+    if (err == null) {
+      res.json(result);
+    } else {
+      console.log(err);
+    }
+  });
 };

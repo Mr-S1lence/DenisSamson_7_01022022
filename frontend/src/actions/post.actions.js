@@ -7,12 +7,25 @@ export const LIKE_POST = "LIKE_POST";
 export const UNLIKE_POST = "UNLIKE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
+export const GET_LIKES_POST_USER = "GET_LIKES_POST_USER";
 
 
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
 //errors
 export const GET_POST_ERRORS = "GET_POST_ERRORS";
+
+export const getLikesPostUser = (uid) => {
+  return (dispatch) => {
+    return axios
+      .get(`${process.env.REACT_APP_API_URL}api/post/get-like-post-user/${uid}`)
+      .then((res) => {
+        dispatch({ type: GET_LIKES_POST_USER, payload: res.data });
+      })
+      .catch((err) => console.log(err));
+  };
+};
+
 
 export const getPosts = () => {
   return (dispatch) => {

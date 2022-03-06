@@ -10,6 +10,13 @@ const LikeButton = ({ post }) => {
   const uid = useContext(UidContext);
   const dispatch = useDispatch();
 
+  if (!Array.isArray(post.likers)) {
+    post.likers = post.likers.split(/[",]/);
+  }
+  if (post.likers[0] === "") {
+    post.likers.length = 0;
+  }
+
   const like = () => {
     dispatch(likePost(post._id, uid));
     setLiked(true);
@@ -20,10 +27,10 @@ const LikeButton = ({ post }) => {
     setLiked(false);
   };
 
-/*   useEffect(() => {
+  useEffect(() => {
     if (post.likers.includes(uid)) setLiked(true);
     else setLiked(false);
-  }, [uid, post.likers, liked]); */
+  }, [uid, post.likers, liked]);
 
   return (
     <div className="like-container">
@@ -43,7 +50,7 @@ const LikeButton = ({ post }) => {
           onClick={unlike}
         />
       )}
-      {/* <span>{post.likers.length}</span> */}
+      {post.likers && <span>{post.likers.length}</span>}
     </div>
   );
 };
