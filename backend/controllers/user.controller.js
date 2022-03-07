@@ -1,6 +1,6 @@
 const database = require("../config/db");
 const db = database.getDB();
-const userData = "user_id AS _id, pseudo, email, picture, createdAt, bio";
+const userData = "user_id AS _id, firstname, lastname, email, picture, createdAt, bio";
 
 module.exports.getAllUsers = async (req, res) => {
   const sql = "SELECT " + userData + " FROM users;";

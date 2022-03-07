@@ -4,7 +4,8 @@ import SignInForm from "./SignInForm";
 
 const SignUpForm = () => {
   const [formSubmit, setFormSubmit] = useState(false);
-  const [pseudo, setPseudo] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [controlPassword, setControlPassword] = useState("");
@@ -12,7 +13,8 @@ const SignUpForm = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     const terms = document.getElementById("terms");
-    const pseudoError = document.querySelector(".pseudo.error");
+    const firstnameError = document.querySelector(".firstname.error");
+    const lastnameError = document.querySelector(".firstname.error");
     const emailError = document.querySelector(".email.error");
     const passwordError = document.querySelector(".password.error");
     const passwordConfirmError = document.querySelector(
@@ -35,7 +37,8 @@ const SignUpForm = () => {
         method: "post",
         url: `${process.env.REACT_APP_API_URL}api/user/register`,
         data: {
-          pseudo,
+          firstname,
+          lastname,
           email,
           password,
         },
@@ -43,7 +46,8 @@ const SignUpForm = () => {
         .then((res) => {
           console.log(res);
           if (res.data.errors) {
-            pseudoError.innerHTML = res.data.errors.pseudo;
+            firstnameError.innerHTML = res.data.errors.firstname;
+            lastnameError.innerHTML = res.data.errors.lastname;
             emailError.innerHTML = res.data.errors.email;
             passwordError.innerHTML = res.data.errors.password;
           } else {
@@ -66,16 +70,27 @@ const SignUpForm = () => {
         </>
       ) : (
         <form action="" onSubmit={handleRegister} id="sign-up-form">
-          <label htmlFor="pseudo">Pseudo</label>
+          <label htmlFor="firstname">Prénom</label>
           <br />
           <input
             type="text"
-            name="pseudo"
-            id="pseudo"
-            onChange={(e) => setPseudo(e.target.value)}
-            value={pseudo}
+            name="firstname"
+            id="firstname"
+            onChange={(e) => setFirstname(e.target.value)}
+            value={firstname}
           />
-          <div className="pseudo error"></div>
+          <div className="firstname error"></div>
+          <br />
+          <label htmlFor="lastname">Nom</label>
+          <br />
+          <input
+            type="text"
+            name="lastname"
+            id="lastname"
+            onChange={(e) => setLastname(e.target.value)}
+            value={lastname}
+          />
+          <div className="lastname error"></div>
           <br />
           <label htmlFor="email">Email</label>
           <br />

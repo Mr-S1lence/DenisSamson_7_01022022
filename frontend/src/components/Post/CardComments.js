@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from "../../actions/post.actions";
 import { dateParser, isEmpty } from "../Utils";
 import EditDeleteComment from "./EditDeleteComment";
 import { addComment, getComments } from "../../actions/comment.actions";
@@ -63,7 +62,8 @@ const CardComments = ({ post }) => {
               <div className="right-part">
                 <div className="comment-header">
                   <div className="pseudo">
-                    <h3>{comment.commenterPseudo}</h3>
+                    <h3>{comment.firstname}</h3>
+                    <h3>{comment.lastname}</h3>
                   </div>
                   <span>{dateParser(comment.createdAt)}</span>
                 </div>

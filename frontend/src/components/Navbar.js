@@ -31,7 +31,7 @@ const Navbar = () => {
             </li>
             <li className="welcome">
               <NavLink to="/profil">
-                <h5>Bienvenue {userData.pseudo}</h5>
+                <h5>Bienvenue {userData.firstname}</h5>
               </NavLink>
             </li>
             <Logout />

@@ -14,22 +14,28 @@ const createToken = (id) => {
 
 exports.signUp = async (req, res) => {
   const db = database.getDB();
-  const { pseudo, email, password } = req.body;
+  /* const { pseudo, email, password } = req.body; */
+  const { firstname, lastname, email, password } = req.body;
   const salt = await bcrypt.hash(password, 10);
   const uid = uuidv4();
 
   if ((await checkEmail(email)) == true) {
     const sql =
-      "INSERT INTO `users` (`user_id`, `pseudo`, `email`, `password`, `createdAt`) VALUES ('" +
+      /* "INSERT INTO `users` (`user_id`, `pseudo`, `email`, `password`, `createdAt`) VALUES ('" + */
+      "INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `password`, `createdAt`) VALUES ('" +
       uid +
       "', '" +
-      pseudo +
+/*       pseudo +
+      "', '" + */
+      firstname +
+      "', '" +
+      lastname +
       "', '" +
       email +
       "', '" +
       salt +
       "', NOW());";
-
+    console.log(sql);
     try {
       db.query(sql, (err, result) => {
         if (!result) {
@@ -44,7 +50,7 @@ exports.signUp = async (req, res) => {
       res.status(200).send({ err });
     }
   } else {
-    let errors = { pseudo: "", email: "", password: "" };
+    let errors = { email: "", password: "" };
     errors.email = "Email incorrect";
     res.status(200).send({ errors });
   }

@@ -6,17 +6,43 @@ const { uploadErrors } = require("../utils/errors.utils");
 const pipeline = promisify(require("stream").pipeline);
 
 module.exports.readPost = (req, res) => {
+  /*   const dataPost =
+    "p.post_id AS _id, p.posterId, p.message, p.picture, p.video, p.createdAt, p.updatedAt";
+  const sql =
+    "SELECT " +
+    dataPost +
+    ", GROUP_CONCAT(COALESCE(likes.userId, '')) likers FROM posts p LEFT JOIN likes ON p.post_id = likes.postId GROUP BY `post_id` ORDER BY createdAt DESC"; */
+
+  /*     const dataPost =
+    "p.post_id AS _id, p.posterId, p.message, p.picture, p.video, p.createdAt, p.updatedAt";
+  const sql =
+    "SELECT " +
+    dataPost +
+    ", GROUP_CONCAT(COALESCE(likes.userId, '')) likers FROM posts p LEFT JOIN likes ON p.post_id = likes.postId GROUP BY `post_id` ORDER BY createdAt DESC"; */
+
   const dataPost =
     "p.post_id AS _id, p.posterId, p.message, p.picture, p.video, p.createdAt, p.updatedAt";
   const sql =
     "SELECT " +
     dataPost +
-    ", GROUP_CONCAT(COALESCE(likes.userId, '')) likers FROM posts p LEFT JOIN likes ON p.post_id = likes.postId GROUP BY `post_id` ORDER BY createdAt DESC";
+    ", (SELECT COUNT(*) FROM comments WHERE p.post_id = comments.postId) AS comments " +
+    ", GROUP_CONCAT(COALESCE(likes.userId, '')) likers " +
+    "FROM posts p " +
+    "LEFT JOIN likes ON p.post_id = likes.postId " +
+    "LEFT JOIN comments ON p.post_id = comments.postId " +
+    "GROUP BY `post_id` ORDER BY createdAt DESC";
 
   try {
     db.query(sql, async (err, result) => {
       if (err == null) {
-        res.json(result);
+        db.query(sql, async (err, result) => {
+          /* console.log(err); */
+          if (err == null) {
+            res.json(result);
+          } else {
+            console.log(err);
+          }
+        });
       } else {
         console.log(err);
       }
@@ -110,7 +136,6 @@ module.exports.deletePost = (req, res) => {
     }
   });
 };
-
 
 module.exports.likePost = async (req, res) => {
   console.log("like");

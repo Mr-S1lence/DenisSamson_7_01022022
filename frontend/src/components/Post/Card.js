@@ -62,7 +62,7 @@ const Card = ({ post }) => {
                 <h3>
                   {!isEmpty(usersData[0]) &&
                     usersData.map((user) => {
-                      if (user._id === post.posterId) return user.pseudo;
+                      if (user._id === post.posterId) return user.firstname + " " + user.lastname;
                       else return null;
                     })}
                 </h3>
@@ -119,7 +119,7 @@ const Card = ({ post }) => {
                   size="lg"
                   color="#FD2D01"
                 />
-                {/* <span>{post.comments.length}</span> */}
+                <span>{post.comments}</span>
               </div>
               <LikeButton post={post} />
             </div>
