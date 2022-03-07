@@ -73,3 +73,17 @@ module.exports.updateComment = (req, res) => {
     }
   });
 };
+
+module.exports.deleteComment = (req, res) => {
+  console.log(req);
+  console.log(req.params.id);
+  const sql = "DELETE FROM comments WHERE post_id ='" + req.params.id + "';";
+  console.log(sql);
+  db.query(sql, async (err, result) => {
+    if (err == null) {
+      res.json(result[0]);
+    } else {
+      console.log(err);
+    }
+  });
+}

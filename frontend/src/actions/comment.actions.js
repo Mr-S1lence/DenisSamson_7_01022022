@@ -4,6 +4,7 @@ import axios from "axios";
 export const GET_COMMENTS = "GET_COMMENTS";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const EDIT_COMMENT = "EDIT_COMMENT";
+export const DELETE_COMMENT = "DELETE_COMMENT";
 
 export const getComments = (postId) => {
   return (dispatch) => {
@@ -39,6 +40,20 @@ export const editComment = (postId, commentId, text) => {
     })
       .then((res) => {
         dispatch({ type: EDIT_COMMENT, payload: { postId, commentId, text } });
+      })
+      .catch((err) => console.log(err));
+  };
+};
+
+export const deleteComment = (postId, commentId) => {
+  return (dispatch) => {
+    return axios({
+      method: "patch", //patch et non delete pour mettre à jour un tableau à l'intérieur du post
+      url: `${process.env.REACT_APP_API_URL}api/comment/delete-comment-post/${postId}`,
+      data: { commentId },
+    })
+      .then((res) => {
+        dispatch({ type: DELETE_COMMENT, payload: { postId, commentId } });
       })
       .catch((err) => console.log(err));
   };

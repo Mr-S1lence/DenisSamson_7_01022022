@@ -10,7 +10,7 @@ export const DELETE_POST = "DELETE_POST";
 export const GET_LIKES_POST_USER = "GET_LIKES_POST_USER";
 
 
-export const DELETE_COMMENT = "DELETE_COMMENT";
+
 
 //errors
 export const GET_POST_ERRORS = "GET_POST_ERRORS";
@@ -126,16 +126,4 @@ export const deletePost = (postId) => {
  */
 
 
-export const deleteComment = (postId, commentId) => {
-  return (dispatch) => {
-    return axios({
-      method: "patch", //patch et non delete pour mettre à jour un tableau à l'intérieur du post
-      url: `${process.env.REACT_APP_API_URL}api/post/delete-comment-post/${postId}`,
-      data: { commentId },
-    })
-      .then((res) => {
-        dispatch({ type: DELETE_COMMENT, payload: { postId, commentId } });
-      })
-      .catch((err) => console.log(err));
-  };
-};
+
