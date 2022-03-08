@@ -1,0 +1,11 @@
+$color-1: #ff7b77;
+$color-2: #FFD6D6;
+
+$breakpoints: (
+    "mobile-down": 500px,
+    "tablet": 768px,
+    "tablet-down": 900px,
+    "laptop": 1024px,
+    "laptop-down": 1280px,
+    "desktop": 1440px
+);

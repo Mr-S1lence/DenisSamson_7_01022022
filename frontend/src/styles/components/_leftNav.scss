@@ -1,5 +1,24 @@
+.left-nav-container {
+/*     border: solid blue 1px; */
+  background-color: white;
+  .left-nav svg {
+    padding: 0.3rem;
+    width: 2.4rem;
+  }
 
+}
+.left-nav svg{
+  border-right: solid 3px transparent;
+}
+.active-left-nav svg{
+  border-right: solid 3px transparent;
+  border-left: solid 3px #fd2d01;
+  border-bottom: solid 3px #fd2d01;
+/*   background-color: $color-2; */
+}
 
-.active-left-nav{
-    border-left: solid 3px #FD2D01;
+.icons{
+  position: -webkit-sticky;
+position: sticky;
+top: 0px;
 }

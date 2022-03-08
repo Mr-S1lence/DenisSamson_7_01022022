@@ -48,7 +48,7 @@ module.exports.updateUser = async (req, res) => {
     "' WHERE `user_id` = '" +
     req.params.id +
     "';";
-
+console.log(sql);
   db.query(sql, async (err, result) => {
     if (err == null) {
       res.json(result[0]);

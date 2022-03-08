@@ -1,37 +1,119 @@
-.card-container{
-    display: flex;
-    border: solid 1px #FD2D01;
-    border-radius: 2rem;
-    padding: 0.5rem;
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
 }
 
-.card-left img{
-    width: 4rem;
-    height: 4rem;
-    min-width: 4rem;
-    min-height: 4rem;
-    border-radius: 50%;
-    border: solid 1px #FD2D01;
+.thread-container {
+  display: flex;
+  justify-content: center;
+  ul {
+    width: 18rem;
+  }
 }
 
-.card-right{
+.card-container {
+  margin-top: 1rem;
+  /*   display: grid;
+  grid-template-columns: 1fr; */
+  border: solid 1px $color-1;
+  background-color: white;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  
+  /*     .card-left{
+        padding-top: 0.5rem;
+        display: flex;
+        justify-content: center;
+    } */
+  .card {
+    /*     border: solid yellow 1px; */
     width: 100%;
-}
+    padding:  0.5rem 0.5rem 1rem 0.5rem;
 
-.card-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    .btn{
+       margin: 1rem 0;
+    }
+    textarea{
+      width: 16rem;
+      margin: auto;
+      height: 5rem;
+ /*      border-radius: 20px; */
+      padding: 0.5rem;
+    }
 
+    .card-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
+      h3, span {
+        margin: 0.5rem 0 0 0.5rem;
+      }
+      .img-profil img {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        /*         border: solid 1px #fd2d01; */
+      }
+    }
 
-.card-footer{
-    display: flex;
-    justify-content: space-between;
-}
+    .card-content {
+      text-align: center;
 
-.button-container{
-    display: flex;
-    justify-content: flex-end;
+      p {
+        text-align: left;
+        margin: 0.5rem;
+      }
+    }
+    .card-pic {
+      width: 16rem;
+      border-radius: 2rem;
+    }
+    .content {
+      text-align: center;
+      p{
+        text-align: left;
+        margin: 0.5rem;
+      }
+      iframe{
+          width: 250px;
+          height:150px;
+          margin: auto;
+      }
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      img {
+        max-width: 16rem;
+        border-radius: 2rem;
+      }
+    }
+
+    .card-footer {
+      margin-top: 1rem;
+      padding-right: 0.5rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      span{
+        margin: 0 1rem 0 0rem;
+      }
+      svg{
+        margin: 0 0.5rem 0 1rem;
+      }
+      .button-card {
+        display: flex;
+/*         svg {
+          margin: 0 0.3rem 0 0.3rem;
+        } */
+        span{
+          padding: 2px 0 0 0;
+        }
+      }
+    }
+  }
 }

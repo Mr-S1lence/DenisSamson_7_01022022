@@ -23,7 +23,6 @@ const Navbar = () => {
         </div>
         {uid ? (
           <ul>
-            <li></li>
             <li className="user-img">
               <NavLink to="/profil">
                 <img src={userData.picture} alt="user-img" />

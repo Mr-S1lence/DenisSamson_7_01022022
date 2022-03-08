@@ -1,3 +1,54 @@
-.profil-page > div{
-    display: flex;
+/* .profil-page{
+  display: grid;
+  grid-template-columns: 3rem auto;
+} */
+
+.profil-page > div {
+  display: flex;
+  justify-content: center;
+}
+
+.profil-container {
+/*   display: grid;
+  grid-template-columns: auto;
+  justify-content: center; */
+  text-align: center;
+  margin:auto;
+  
+  .left-part {
+    width: 20rem;
+    margin: auto;
+    .upload-pic{
+      background-color: white;
+      margin: 1rem ;
+      padding: 0.5rem 0;
+      border-radius: 2rem;
+      .input-file{
+        background-color: white;
+        border-radius: 0;
+        width: 16rem;
+      }
+    }
+    img {
+      width: 8rem;
+      height: 8rem;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+  }
+  .right-part {
+    width: 20rem;
+    margin: auto;
+    .bio-update p {
+      text-align: justify;
+      margin: 0.5rem;
+    }
+    textarea {
+      width: 16rem;
+      margin: auto;
+      height: 5rem;
+      border-radius: 20px;
+      padding: 0.5rem 0.5rem 1rem 0.5rem;
+    }
+  }
 }

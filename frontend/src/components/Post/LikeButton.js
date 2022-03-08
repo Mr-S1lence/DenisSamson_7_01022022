@@ -50,7 +50,7 @@ const LikeButton = ({ post }) => {
           onClick={unlike}
         />
       )}
-      {post.likers && <span>{post.likers.length}</span>}
+      {post.likers && <span>{post.likers.length}</span>} 
     </div>
   );
 };

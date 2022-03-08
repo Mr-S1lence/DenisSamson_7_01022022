@@ -12,13 +12,12 @@ import { updatePost } from "../../actions/post.actions";
 import DeleteCard from "./DeleteCard";
 import CardComments from "./CardComments";
 
-
 const Card = ({ post }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isUpdated, setIsUpdated] = useState(false);
   const [textUpdate, setTextUpdate] = useState(null);
   const [showComments, setShowComments] = useState(false);
-  
+
   const userData = useSelector((state) => state.userReducer);
   const usersData = useSelector((state) => state.usersReducer);
   const dispatch = useDispatch();
@@ -29,8 +28,6 @@ const Card = ({ post }) => {
     }
     setIsUpdated(false);
   };
-  
-
 
   useEffect(() => {
     !isEmpty(usersData[0]) && setIsLoading(false);
@@ -42,33 +39,36 @@ const Card = ({ post }) => {
         <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
       ) : (
         <>
-          <div className="card-left">
-            <img
-              src={
-                !isEmpty(usersData[0]) &&
-                usersData
-                  .map((user) => {
-                    if (user._id === post.posterId) return user.picture;
-                    else return null;
-                  })
-                  .join("") //entre chaque élément on mets des strings vide
-              }
-              alt="img profil"
-            />
-          </div>
-          <div className="card-right">
+          <div className="card">
             <div className="card-header">
+              <div className="img-profil">
+                <img
+                  src={
+                    !isEmpty(usersData[0]) &&
+                    usersData
+                      .map((user) => {
+                        if (user._id === post.posterId) return user.picture;
+                        else return null;
+                      })
+                      .join("") //entre chaque élément on mets des strings vide
+                  }
+                  alt="img profil"
+                />
+              </div>
+
               <div className="pseudo">
                 <h3>
                   {!isEmpty(usersData[0]) &&
                     usersData.map((user) => {
-                      if (user._id === post.posterId) return user.firstname + " " + user.lastname;
+                      if (user._id === post.posterId)
+                        return user.firstname + " " + user.lastname;
                       else return null;
                     })}
                 </h3>
+                <span>{dateParser(post.createdAt)}</span>
               </div>
-              <span>{dateParser(post.createdAt)}</span>
             </div>
+            <div className="card-content">
             {isUpdated === false && <p>{post.message}</p>}
             {isUpdated && (
               <div className="update-post">
@@ -88,8 +88,8 @@ const Card = ({ post }) => {
             )}
             {post.video && (
               <iframe
-                width="500"
-                height="300"
+                width="250"
+                height="150"
                 src={post.video}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -97,21 +97,23 @@ const Card = ({ post }) => {
                 title={post._id}
               ></iframe>
             )}
-            {userData._id === post.posterId && (
-              <div className="button-container">
-                <div onClick={() => setIsUpdated(!isUpdated)}>
-                  <FontAwesomeIcon
-                    icon={faPenToSquare}
-                    size="lg"
-                    color="#FD2D01"
-                  />
-                </div>
-                <DeleteCard id={post._id} />
-              </div>
-            )}
+            </div>
             <div className="card-footer">
+              {userData._id === post.posterId && (
+                <div className="button-card">
+                  <div onClick={() => setIsUpdated(!isUpdated)}>
+                    <FontAwesomeIcon
+                      icon={faPenToSquare}
+                      size="lg"
+                      color="#FD2D01"
+                    />
+                  </div>
+                  <DeleteCard id={post._id} />
+                </div>
+              )}
+
               <div
-                className="comment-icon"
+                className="button-card"
                 onClick={() => setShowComments(!showComments)}
               >
                 <FontAwesomeIcon
@@ -120,6 +122,8 @@ const Card = ({ post }) => {
                   color="#FD2D01"
                 />
                 <span>{post.comments}</span>
+
+                
               </div>
               <LikeButton post={post} />
             </div>

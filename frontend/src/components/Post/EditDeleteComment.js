@@ -48,12 +48,18 @@ const EditDeleteComment = ({ comment, postId }) => {
             Editer
           </label>
           <br />
-          <input
+{/*           <input
             type="text"
             name="text"
             onChange={(e) => setText(e.target.value)}
             defaultValue={comment.text}
-          />
+          /> */}
+          <textarea
+          defaultValue={comment.text}
+            name="text"
+            onChange={(e) => setText(e.target.value)}
+            value={text}
+          >{comment.text}</textarea>
           <br />
           <div className="btn">
             <span

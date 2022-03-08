@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+/*   background: $color-2; */
+}
+
+button{
+  margin: 0 1rem;
+  width: 8rem;
+  height: 2rem;
+  border-radius: 2rem;
+  background-color: $color-2;
+}
+
+* {
+  /*     margin: 0.3rem; */
+  padding: 0;
+  list-style-type: none;
+  outline: none;
+  border: solid 2px FD2D01;
+  text-decoration: none;
+
+  &::selection {
+    background: $color-1;
+  }
+}
+
+.main{
+/*   width: 90%; */
+/*   display: grid;
+  grid-template-columns: 1fr; */
+  justify-content: center;
+  align-content: center;
+}
+
+
+textarea {
+  resize: none;
+  background: white;
+}
+/* textarea {
+  &:focus {
+    box-shadow: 0 0 4px rgba(0, 22, 44, 0.1);
+  }
+} */

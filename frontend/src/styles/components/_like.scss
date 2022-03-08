@@ -1,0 +1,142 @@
+/* ------------------------------------------------------------------------
+ ---------- LIKE BUTTON ---------------------------------------------------
+ ------------------------------------------------------------------------*/
+ 
+ $heart-size: 2rem;
+ $like-border-sz: 1px;
+ $like-hover-clr: $color-primary;
+ $like-hover-clr-2nd: $color-secondary;
+ $like-backgrd-clr: white;
+ $like-border-clr : black;
+ 
+ $heart-size-elm: math.div($heart-size, 2);
+ $heart-size-elm-btm: calc(#{$heart-size-elm} - #{$like-border-sz});
+ 
+ .like-container{
+     width: $heart-size;
+     height: $heart-size;
+     border-radius: 50%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     &__relative{
+         margin-top: 15%;
+         position: relative;
+         width: $heart-size-elm;
+         height: $heart-size-elm;
+         transform: rotate(45deg);
+     }
+     &:hover{
+         cursor: pointer;
+         & .heart__top-lft__hover{ 
+             animation: fill-heart-top-lft 0.9s forwards;
+         }
+         & .heart__top-rgt__hover{ 
+             animation: fill-heart-top-rgt 0.9s forwards;
+         }
+         & .heart__btm__hover{ 
+             animation: fill-heart-btm 0.9s forwards;
+         }
+     }
+ }
+ 
+ .heart{
+     box-sizing: border-box;
+     position: absolute;
+     width: $heart-size-elm;
+     height: $heart-size-elm;
+     border: solid $like-border-sz $like-border-clr;
+     background: $like-backgrd-clr;
+     &--menu{
+         background: $color-background-elements;
+     }
+     &__top-rgt{
+         z-index: 3;
+         border-bottom: unset;
+         border-radius: 50% 50% 0 0;
+         left: 0;
+         top: -50%;
+         &__hover{
+             border: transparent $like-border-sz solid;
+             z-index: 5;
+             background: $like-hover-clr;
+             background-clip: border-box;
+             transform: scale(0);
+         }
+     }
+     &__top-lft{
+         border-right: unset;
+         left: -50%;
+         top: 0;
+         border-radius: 50% 0% 0 50%;
+         &__hover{
+             z-index: 5;
+             border: transparent $like-border-sz solid;
+             background: $like-hover-clr;
+             background-clip: border-box;
+             transform: scale(0);
+         }
+         &__hide-border{
+             z-index: 4;
+             border: transparent solid $like-border-sz;
+             background: $like-backgrd-clr;
+             &--menu{
+                 background: $color-background-elements;
+                 background-clip: padding-box;
+             }
+             background-clip: padding-box;
+         }
+     }  
+     &__btm{
+         border-top: unset;
+         border-left: unset;
+         width: $heart-size-elm-btm;
+         height: $heart-size-elm-btm;
+         right: 0%;
+         bottom: 0%;
+         &__hover{
+             z-index: 5;
+             border: unset;
+             background-color: $like-hover-clr;
+             background-image: -webkit-linear-gradient(
+                     135deg,
+                     $like-hover-clr-2nd,
+                     $like-hover-clr 50%
+                     );
+             transform: scale(0);
+         }
+     }
+ }
+ 
+ @keyframes fill-heart-top-lft {
+     0%{
+         transform-origin: right;
+         transform: scale(0); 
+     }
+     100%{
+         transform-origin: right;
+         transform: scale(1);
+     }
+ }
+ 
+ @keyframes fill-heart-top-rgt {
+     0%{
+         transform-origin: bottom;
+         transform: scale(0); 
+     }
+     100%{
+         transform-origin: bottom;
+         transform: scale(1);
+     }
+ }
+ 
+ @keyframes fill-heart-btm {
+     0%{
+         transform-origin: center;
+         transform: scale(0);
+     }
+     100%{
+         transform-origin: center;
+         transform: scale(1);
+     }
+ }

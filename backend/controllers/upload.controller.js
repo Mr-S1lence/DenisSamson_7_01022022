@@ -21,7 +21,7 @@ module.exports.uploadProfil = async (req, res) => {
     const errors = uploadErrors(err);
     return res.status(201).json({ errors });
   }
-  const fileName = req.body.name + Date.now() + ".jpg";
+  const fileName = req.body.name +".jpg";
 
   await pipeline(
     req.file.stream,

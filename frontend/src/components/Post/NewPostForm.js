@@ -38,7 +38,6 @@ const NewPostForm = () => {
       dispatch(getPosts(data));
       //Remise à 0
       cancelPost();
-
     } else {
       alert("Veuillez entrer un message");
     }
@@ -51,28 +50,26 @@ const NewPostForm = () => {
     setFile("");
   };
 
-
-
   useEffect(() => {
     if (!isEmpty(userData)) setIsLoading(false);
 
     const handleVideo = () => {
-        let findLink = message.split(" ");
-        for (let i = 0; i < findLink.length; i++) {
-          if (
-            findLink[i].includes("https://yout") ||
-            findLink[i].includes("https://www.yout")
-          ) {
-            let embed = findLink[i].replace("watch?v=", "embed/");
-            setVideo(embed.split("&")[0]);
-            //Suppression du lien de la vidéo
-            findLink.splice(i, 1);
-            setMessage(findLink.join(" "));
-            //Empecher l'ajout d'une photo si vidéo
-            setPostPicture("");
-          }
+      let findLink = message.split(" ");
+      for (let i = 0; i < findLink.length; i++) {
+        if (
+          findLink[i].includes("https://yout") ||
+          findLink[i].includes("https://www.yout")
+        ) {
+          let embed = findLink[i].replace("watch?v=", "embed/");
+          setVideo(embed.split("&")[0]);
+          //Suppression du lien de la vidéo
+          findLink.splice(i, 1);
+          setMessage(findLink.join(" "));
+          //Empecher l'ajout d'une photo si vidéo
+          setPostPicture("");
         }
-      };
+      }
+    };
 
     handleVideo();
   }, [userData, message, video]);
@@ -93,20 +90,21 @@ const NewPostForm = () => {
             />
             {message || postPicture || video.length > 20 ? (
               <li className="card-container">
-                <div className="card-left">
-                  <img src={userData.picture} alt="user-pic" />
-                </div>
-                <div className="card-right">
+                <div className="card">
                   <div className="card-header">
-                    <div className="pseudo">
-                      <h3>{userData.firstname}</h3>
-                      <h3>{userData.lastname}</h3>
+                    <div className="img-profil">
+                      <img src={userData.picture} alt="user-pic" />
                     </div>
-                    <span>{timestampParser(Date.now())}</span>
+                    <div className="pseudo">
+                      <h3>
+                        {userData.firstname} {userData.lastname}
+                      </h3>
+                      <span>{timestampParser(Date.now())}</span>
+                    </div>
                   </div>
                   <div className="content">
                     <p>{message}</p>
-                    <img src={postPicture} alt="" />
+                                        <img src={postPicture} alt="" />
                     {video && (
                       <iframe
                         src={video}

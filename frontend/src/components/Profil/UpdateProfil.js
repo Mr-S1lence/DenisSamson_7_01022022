@@ -21,10 +21,9 @@ const UpdateProfil = () => {
     <div>
       <LeftNav />
       <div className="profil-container">
-        <h1>Profil de {userData.firstname} {userData.lastname}</h1>
+        <h1>{userData.firstname} {userData.lastname}</h1>
         <div className="update-container">
           <div className="left-part">
-            <h3>Photo de profil</h3>
             <img src={userData.picture} alt="avatar utilisateur" />
             <UploadImg />
             <p>{error.maxSize}</p>
@@ -50,11 +49,12 @@ const UpdateProfil = () => {
                     defaultValue={userData.bio}
                     onChange={(e) => setBio(e.target.value)}
                   ></textarea>
+                  <br />
                   <button onClick={handleUpdate}>Valider modification</button>
                 </>
               )}
             </div>
-            <h4>Membre depuis le : {dateParser(userData.createdAt)}</h4>
+            <h4>Membre depuis le : </h4><span>{dateParser(userData.createdAt)}</span>
             <h5>
               Abonnements :{" "}
               {userData.following ? userData.following.length : ""}
