@@ -58,6 +58,7 @@
         width: 3rem;
         height: 3rem;
         border-radius: 50%;
+        object-fit: cover;
         /*         border: solid 1px #fd2d01; */
       }
     }
@@ -66,7 +67,7 @@
       text-align: center;
 
       p {
-        text-align: left;
+        text-align: justify;
         margin: 0.5rem;
       }
     }

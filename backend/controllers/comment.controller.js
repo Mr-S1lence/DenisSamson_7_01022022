@@ -4,12 +4,10 @@ const db = database.getDB();
 module.exports.createComment = (req, res) => {
   commentId = Math.random();
   const sql =
-    "INSERT INTO comments (`comment_Id`, `commenterId`, `commenterPseudo`, `text`, `createdAt`, `postId`) VALUES ('" +
+    "INSERT INTO comments (`comment_Id`, `commenterId`, `text`, `createdAt`, `postId`) VALUES ('" +
     commentId +
     "', '" +
     req.body.commenterId +
-    "', '" +
-    req.body.commenterPseudo +
     "', '" +
     req.body.text +
     "', NOW(), '" +

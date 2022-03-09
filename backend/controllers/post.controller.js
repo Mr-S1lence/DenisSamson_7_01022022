@@ -12,7 +12,7 @@ module.exports.readPost = (req, res) => {
     "SELECT " +
     dataPost +
     ", (SELECT COUNT(*) FROM comments WHERE p.post_id = comments.postId) AS comments " +
-    ", GROUP_CONCAT(COALESCE(likes.userId, '')) likers " +
+    ", GROUP_CONCAT(DISTINCT(COALESCE(likes.userId, ''))) likers " +
     "FROM posts p " +
     "LEFT JOIN likes ON p.post_id = likes.postId " +
     "LEFT JOIN comments ON p.post_id = comments.postId " +

@@ -21,7 +21,7 @@ const UploadImg = () => {
       <label htmlFor="file">Changer d'image</label>
       <br />
       <input
-      class="input-file"
+      className="input-file"
         type="file"
         id="file"
         name="file"
