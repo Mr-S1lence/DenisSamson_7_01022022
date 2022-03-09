@@ -21,7 +21,7 @@ module.exports.readPost = (req, res) => {
   try {
     db.query(sql, async (err, result) => {
       if (err == null) {
-            res.json(result);
+        res.json(result);
       } else {
         console.log(err);
       }
@@ -102,10 +102,7 @@ module.exports.updatePost = (req, res) => {
 };
 
 module.exports.deletePost = (req, res) => {
-  console.log(req);
-  console.log(req.params.id);
   const sql = "DELETE FROM posts WHERE post_id ='" + req.params.id + "';";
-  console.log(sql);
   db.query(sql, async (err, result) => {
     if (err == null) {
       res.json(result[0]);
@@ -116,9 +113,6 @@ module.exports.deletePost = (req, res) => {
 };
 
 module.exports.likePost = async (req, res) => {
-  console.log("like");
-  console.log(req.body);
-  console.log(req.body.userId);
   const sql =
     "INSERT INTO `likes` (postId, userId) VALUES ('" +
     req.params.id +
@@ -136,7 +130,6 @@ module.exports.likePost = async (req, res) => {
 };
 
 module.exports.unlikePost = async (req, res) => {
-  console.log("unlike");
   const sql =
     "DELETE FROM `likes` WHERE likes.userId = '" +
     req.body.id +

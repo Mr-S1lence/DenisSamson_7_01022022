@@ -49,7 +49,7 @@ const CardComments = ({ post }) => {
                 key={comment._id}
               >
                 <div className="comment-header">
-                <FontAwesomeIcon icon={faArrowTurnUp} size="lg" color="#FD2D01" />
+                <FontAwesomeIcon icon={faArrowTurnUp} color="#FD2D01" />
                   <img
                     src={
                       !isEmpty(usersData[0]) &&

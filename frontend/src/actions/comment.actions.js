@@ -49,7 +49,7 @@ export const deleteComment = (postId, commentId) => {
   return (dispatch) => {
     return axios({
       method: "patch", 
-      url: `${process.env.REACT_APP_API_URL}api/comment/delete-comment-post/${postId}`,
+      url: `${process.env.REACT_APP_API_URL}api/comment/delete-comment-post/${commentId}`,
       data: { commentId },
     })
       .then((res) => {

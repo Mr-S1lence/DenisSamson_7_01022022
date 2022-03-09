@@ -5,6 +5,7 @@
   margin: auto;
 }
 
+
 .thread-container {
   display: flex;
   justify-content: center;
@@ -22,7 +23,8 @@
   border-radius: 2rem;
   display: flex;
   justify-content: center;
-  
+  width: 18rem;
+  word-break: break-word;
   /*     .card-left{
         padding-top: 0.5rem;
         display: flex;
@@ -30,8 +32,8 @@
     } */
   .card {
     /*     border: solid yellow 1px; */
-    width: 100%;
-    padding:  0.5rem 0.5rem 1rem 0.5rem;
+/*     width: 100%; */
+    padding:  0.5rem 0rem 1rem 0rem;
 
     .btn{
        margin: 1rem 0;
@@ -74,9 +76,11 @@
     }
     .content {
       text-align: center;
+
       p{
         text-align: left;
         margin: 0.5rem;
+        overflow-wrap: break-word;
       }
       iframe{
           width: 250px;

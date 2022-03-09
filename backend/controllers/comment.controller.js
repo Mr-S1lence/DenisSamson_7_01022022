@@ -30,7 +30,6 @@ module.exports.readComment = (req, res) => {
     req.params.id +
     "' ORDER BY createdAt ASC;";
 
-  console.log(sql);
   db.query(sql, async (err, result) => {
     if (err == null) {
       res.json(result);
@@ -41,14 +40,13 @@ module.exports.readComment = (req, res) => {
 };
 
 module.exports.updateComment = (req, res) => {
-  console.log("update comment");
   const sql =
     "UPDATE comments SET text ='" +
     req.body.text +
     "', updatedAt = NOW() WHERE comment_id ='" +
     req.body.commentId +
     "';";
-  console.log(sql);
+
   db.query(sql, async (err, result) => {
     if (err == null) {
       res.json(result[0]);
@@ -59,9 +57,7 @@ module.exports.updateComment = (req, res) => {
 };
 
 module.exports.deleteComment = (req, res) => {
-  console.log(req);
-  console.log(req.params.id);
-  const sql = "DELETE FROM comments WHERE post_id ='" + req.params.id + "';";
+  const sql = "DELETE FROM comments WHERE comment_id ='" + req.params.id + "';";
   console.log(sql);
   db.query(sql, async (err, result) => {
     if (err == null) {

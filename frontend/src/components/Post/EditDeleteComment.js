@@ -2,8 +2,9 @@ import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteComment } from "../../actions/comment.actions";
+import { deleteComment, getComments } from "../../actions/comment.actions";
 import { editComment } from "../../actions/comment.actions";
+import { getPosts } from "../../actions/post.actions";
 import { UidContext } from "../AppContext";
 
 const EditDeleteComment = ({ comment, postId }) => {
@@ -24,7 +25,9 @@ const EditDeleteComment = ({ comment, postId }) => {
   };
 
   const handleDelete = () => {
-    dispatch(deleteComment(postId, comment._id));
+    dispatch(deleteComment(postId, comment._id))
+    .then(() => dispatch(getPosts()))
+    .then(() => dispatch(getComments(postId)));
   };
 
   useEffect(() => {
@@ -55,7 +58,7 @@ const EditDeleteComment = ({ comment, postId }) => {
             defaultValue={comment.text}
           /> */}
           <textarea
-          defaultValue={comment.text}
+          /* defaultValue={comment.text} */
             name="text"
             onChange={(e) => setText(e.target.value)}
             value={text}

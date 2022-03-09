@@ -1,11 +1,11 @@
 .post-container{
-/*   width: 80%; */
+
   display: flex;
   justify-content: center;
   margin-top: 1rem;
 
   .post-form{
-/*     width: 100%; */
+
     textarea{
       width: 17rem;
       margin: auto;
@@ -23,12 +23,13 @@
   justify-content: flex-end;
   margin-top: 0.5rem;
   align-items: center;
+  max-width: 17rem;
   
     input {
-      
+        width: 25px;
         height: 25px;
         position: absolute;
-        transform: translate(-30px, -3px);
+        transform: translate(-25px, -3px);
         opacity: 0;
         cursor: pointer;
     

@@ -6,8 +6,6 @@ const { uploadErrors } = require("../utils/errors.utils");
 const pipeline = promisify(require("stream").pipeline);
 
 module.exports.uploadProfil = async (req, res) => {
-  console.log("uploadt avatar");
-  console.log(req.body);
   try {
     if (
       req.file.detectedMimeType != "image/jpg" &&
@@ -39,7 +37,6 @@ module.exports.uploadProfil = async (req, res) => {
       "', updatedAt = NOW() WHERE user_id ='" +
       req.body.userId +
       "';";
-    console.log(sql);
     db.query(sql, async (err, result) => {
       if (err == null) {
         res.json(result);

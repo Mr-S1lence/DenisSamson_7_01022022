@@ -31,11 +31,9 @@ exports.signUp = async (req, res) => {
       "', '" +
       salt +
       "', NOW());";
-    console.log(sql);
     try {
       db.query(sql, (err, result) => {
         if (!result) {
-          console.log("no result");
           const errors = signUpErrors(err);
           res.status(200).send({ errors });
         } else {
