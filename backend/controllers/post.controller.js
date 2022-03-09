@@ -10,7 +10,7 @@ module.exports.readPost = (req, res) => {
     "p.post_id AS _id, p.posterId, p.message, p.picture, p.video, p.createdAt, p.updatedAt";
   const sql =
     "SELECT " +
-    dataPost +
+    `${dataPost}` +
     ", (SELECT COUNT(*) FROM comments WHERE p.post_id = comments.postId) AS comments " +
     ", GROUP_CONCAT(DISTINCT(COALESCE(likes.userId, ''))) likers " +
     "FROM posts p " +
@@ -59,18 +59,8 @@ module.exports.createPost = async (req, res) => {
   const post_Id = Date.now() + Math.random();
   const picture = req.file !== null ? "./uploads/posts/" + fileName : "";
 
-  const sql =
-    "INSERT INTO `posts` (`post_Id`, `posterId`, `message`, `picture`, `video`, `createdAt`) VALUES ('" +
-    post_Id +
-    "','" +
-    req.body.posterId +
-    "','" +
-    req.body.message +
-    "','" +
-    picture +
-    "','" +
-    req.body.video +
-    "', NOW());";
+  const sql = `INSERT INTO posts (post_Id, posterId, message, picture, video, createdAt) `+
+  `VALUES ("${post_Id}","${req.body.posterId}","${req.body.message}","${picture}","${req.body.video}", NOW());`;
 
   try {
     db.query(sql, async (err, result) => {
@@ -86,12 +76,7 @@ module.exports.createPost = async (req, res) => {
 };
 
 module.exports.updatePost = (req, res) => {
-  const sql =
-    "UPDATE posts SET message ='" +
-    req.body.message +
-    "', updatedAt = NOW() WHERE post_id ='" +
-    req.params.id +
-    "';";
+  const sql = `UPDATE posts SET message ="${req.body.message}", updatedAt = NOW() WHERE post_id ="${req.params.id}";`;
   db.query(sql, async (err, result) => {
     if (err == null) {
       res.json(result[0]);
@@ -102,7 +87,7 @@ module.exports.updatePost = (req, res) => {
 };
 
 module.exports.deletePost = (req, res) => {
-  const sql = "DELETE FROM posts WHERE post_id ='" + req.params.id + "';";
+  const sql = `DELETE FROM posts WHERE post_id ="${req.params.id}";`;
   db.query(sql, async (err, result) => {
     if (err == null) {
       res.json(result[0]);
@@ -113,12 +98,7 @@ module.exports.deletePost = (req, res) => {
 };
 
 module.exports.likePost = async (req, res) => {
-  const sql =
-    "INSERT INTO `likes` (postId, userId) VALUES ('" +
-    req.params.id +
-    "','" +
-    req.body.userId +
-    "');";
+  const sql = `INSERT INTO likes (postId, userId) VALUES ("${req.params.id}", "${req.body.userId}");`;
 
   db.query(sql, async (err, result) => {
     if (err == null) {
@@ -130,12 +110,7 @@ module.exports.likePost = async (req, res) => {
 };
 
 module.exports.unlikePost = async (req, res) => {
-  const sql =
-    "DELETE FROM `likes` WHERE likes.userId = '" +
-    req.body.id +
-    "' AND likes.postId = '" +
-    req.params.id +
-    "';";
+  const sql = `DELETE FROM likes WHERE likes.userId = "${req.body.id}" AND likes.postId = "${req.params.id}";`;
 
   db.query(sql, async (err, result) => {
     if (err == null) {
@@ -147,7 +122,7 @@ module.exports.unlikePost = async (req, res) => {
 };
 
 module.exports.getLikePostByUser = async (req, res) => {
-  const sql = "SELECT postId FROM likes WHERE userId ='" + req.params.id + "';";
+  const sql = `SELECT postId FROM likes WHERE userId = "${req.params.id}"`;
   console.log(sql);
   db.query(sql, async (err, result) => {
     if (err == null) {

@@ -31,12 +31,7 @@ module.exports.uploadProfil = async (req, res) => {
   const picture = req.file !== null ? "./uploads/profil/" + fileName : "";
 
   try {
-    const sql =
-      "UPDATE users SET picture ='" +
-      picture +
-      "', updatedAt = NOW() WHERE user_id ='" +
-      req.body.userId +
-      "';";
+    const sql = `UPDATE users SET picture = "${picture}", updatedAt = NOW() WHERE user_id = "${req.body.userId}";`;
     db.query(sql, async (err, result) => {
       if (err == null) {
         res.json(result);

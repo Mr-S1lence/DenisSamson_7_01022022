@@ -14,13 +14,7 @@ module.exports.getAllUsers = async (req, res) => {
 };
 
 module.exports.userInfo = async (req, res) => {
-  const tab = ["test"];
-  const sql =
-    "SELECT " +
-    userData +
-    " FROM users WHERE user_id = '" +
-    req.params.id +
-    "';";
+  const sql = `SELECT ` + userData + ` FROM users WHERE user_id = "${req.params.id}";`;
   db.query(sql, async (err, result) => {
     if (err == null) {
       res.json(result[0]);
@@ -31,12 +25,8 @@ module.exports.userInfo = async (req, res) => {
 };
 
 module.exports.updateUser = async (req, res) => {
-  const sql =
-    "UPDATE `users` SET `bio` = '" +
-    req.body.bio +
-    "' WHERE `user_id` = '" +
-    req.params.id +
-    "';";
+    const sql =
+    `UPDATE users SET bio =  "${req.body.bio}" WHERE user_id = "${req.params.id}";`;
   db.query(sql, async (err, result) => {
     if (err == null) {
       res.json(result[0]);

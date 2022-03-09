@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const database = require("../config/db");
 const { v4: uuidv4 } = require("uuid");
-const { signUpErrors, signInErrors } = require("../utils/errors.utils");
+const { signUpErrors } = require("../utils/errors.utils");
 const { checkEmail } = require("../utils/utils");
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
@@ -20,17 +20,8 @@ exports.signUp = async (req, res) => {
 
   if ((await checkEmail(email)) == true) {
     const sql =
-      "INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `password`, `createdAt`) VALUES ('" +
-      uid +
-      "', '" +
-      firstname +
-      "', '" +
-      lastname +
-      "', '" +
-      email +
-      "', '" +
-      salt +
-      "', NOW());";
+      `INSERT INTO users (user_id, firstname, lastname, email, password, createdAt) `+
+      `VALUES ("${uid}", "${firstname}", "${lastname}", "${email}", "${salt}", NOW());`;
     try {
       db.query(sql, (err, result) => {
         if (!result) {
@@ -53,8 +44,7 @@ exports.signUp = async (req, res) => {
 module.exports.signIn = async (req, res) => {
   const db = database.getDB();
   const { email, password } = req.body;
-  const sql =
-    "SELECT password, user_id FROM users WHERE email ='" + email + "';";
+  const sql = `SELECT password, user_id FROM users WHERE email = "${email}";`;
 
   db.query(sql, [email], async (err, results) => {
     let errors = { email: "", password: "" };
