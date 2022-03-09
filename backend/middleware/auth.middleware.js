@@ -1,44 +1,52 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const database = require("../config/db");
+const db = database.getDB();
 
 module.exports.checkUser = (req, res, next) => {
-    const token = req.cookies.jwt;
-    const db = database.getDB();
-    if(token ) {
-        jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
-            if(err){
-                res.locals.user = null;
+  const token = req.cookies.jwt;
+  /*  console.log(req.cookies.jwt); */
 
-                next();
-            } else {
-                console.log(decodedToken);
-               /*  let user = UserModel.findById(decodedToken.id); */
-              /*  const sql = */
-                res.locals.user = user;
-                next();
-            }
-        })
-    } else {
+  if (token) {
+    jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
+      if (err) {
         res.locals.user = null;
+        console.log(err);
+        res.cookie("jwt", "", { maxAge: 1 });
+        res.redirect("/");
         next();
-    }
-}
-
+      } else {
+        const sql =
+          "SELECT user_id FROM users WHERE user_id ='" + decodedToken.id + "';";
+        db.query(sql, async (err, result) => {
+          if (result[0].user_id) {
+            res.locals.user = result[0].user_id;
+            next();
+          } else {
+            res.locals.user = null;
+          }
+        });
+      }
+    });
+  } else {
+    res.locals.user = null;
+    next();
+  }
+};
 
 module.exports.requireAuth = (req, res, next) => {
-    const token = req.cookies.jwt;
-    if(token){
-        jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodeToken)=> {
-            if (err){
-                console.log(err);
-            } else {
-                console.log(decodeToken.id);
-                res.status(200).json(decodeToken.id);
-                next();
-            }
-        });
-    }else{
-        console.log('No token');
-        res.json('');
-    }
-}
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodeToken) => {
+      if (err) {
+        console.log(err);
+        res.cookie("jwt", "", { maxAge: 1 });
+        res.redirect("/");
+      } else {
+        next();
+      }
+    });
+  } else {
+    console.log("No token");
+    res.json("");
+  }
+};

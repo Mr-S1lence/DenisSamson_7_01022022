@@ -3,7 +3,7 @@ const cookieParser = require('cookie-parser');
 const path = require('path'); //Donne accès au chemin de notre système de fichier
 const bdd = require('dotenv').config();
 const database = require("./config/db");
-const {requireAuth} = require('./middleware/auth.middleware'); 
+const {requireAuth, checkUser} = require('./middleware/auth.middleware'); 
 
 
 /* const stuffRoutes = require('./routes/stuff'); */
@@ -51,8 +51,9 @@ app.use(cookieParser());
 app.use('/api/sauces', stuffRoutes);
 app.use('/api/auth', userRoutes); */
 
+app.get('*', checkUser);
 app.get('/jwtid', requireAuth, (req, res) => {
-  /* res.status(200).send(res.locals.user._id); */
+  res.status(200).send(res.locals.user);
 })
 
 app.use('/api/user', userRoutes);
