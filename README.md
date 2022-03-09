@@ -11,11 +11,7 @@ Depuis le dossier backend :
 ### `nodemon start`
 
 
-Depuis le dossier backend :
-### `npm install`
-### `npm start`
-
-Depuis le dossier backend :
+Depuis le dossier frontend :
 ### `npm install`
 ### `npm start`
 
