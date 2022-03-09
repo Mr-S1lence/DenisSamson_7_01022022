@@ -57,12 +57,11 @@ const EditDeleteComment = ({ comment, postId }) => {
             onChange={(e) => setText(e.target.value)}
             defaultValue={comment.text}
           /> */}
+
           <textarea
-          /* defaultValue={comment.text} */
-            name="text"
+            defaultValue={comment.text}
             onChange={(e) => setText(e.target.value)}
-            value={text}
-          >{comment.text}</textarea>
+          />
           <br />
           <div className="btn">
             <span

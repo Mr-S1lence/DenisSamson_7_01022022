@@ -18,8 +18,6 @@ const App = () => {
                 withCredentials: true
             })
             .then((res) => {
-                    console.log("test");
-                    console.log(res);
                     setUid(res.data);
                 })
             .catch((err) => console.log("No token"))

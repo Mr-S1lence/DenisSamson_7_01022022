@@ -104,7 +104,7 @@ const NewPostForm = () => {
                   </div>
                   <div className="content">
                     <p>{message}</p>
-                                        <img src={postPicture} alt="" />
+                    <img src={postPicture} alt="" />
                     {video && (
                       <iframe
                         src={video}
