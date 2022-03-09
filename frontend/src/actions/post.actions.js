@@ -9,9 +9,6 @@ export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
 export const GET_LIKES_POST_USER = "GET_LIKES_POST_USER";
 
-
-
-
 //errors
 export const GET_POST_ERRORS = "GET_POST_ERRORS";
 
@@ -25,7 +22,6 @@ export const getLikesPostUser = (uid) => {
       .catch((err) => console.log(err));
   };
 };
-
 
 export const getPosts = () => {
   return (dispatch) => {
@@ -43,22 +39,22 @@ export const addPost = (data) => {
     return axios
       .post(`${process.env.REACT_APP_API_URL}api/post/`, data)
       .then((res) => {
-        if (res.data.errors){
+        if (res.data.errors) {
           //store pour les erreurs
-          dispatch({ type: GET_POST_ERRORS, payload: res.data.errors})
+          dispatch({ type: GET_POST_ERRORS, payload: res.data.errors });
         } else {
-          dispatch({type: GET_POST_ERRORS, payload:''});
+          dispatch({ type: GET_POST_ERRORS, payload: "" });
         }
-      })
+      });
   };
-}
+};
 
 export const likePost = (postId, userId) => {
   return (dispatch) => {
     return axios({
       method: "patch",
       url: `${process.env.REACT_APP_API_URL}api/post/like-post/` + postId,
-      data: { userId, postId},
+      data: { userId, postId },
     })
       .then((res) => {
         dispatch({ type: LIKE_POST, payload: { postId, userId } });
@@ -107,23 +103,3 @@ export const deletePost = (postId) => {
       .catch((err) => console.log(err));
   };
 };
-
-//comments
-
-/* export const addComment = (postId, commenterId, text, commenterPseudo) => {
-  return (dispatch) => {
-    return axios({
-      method: "patch",
-      url: `${process.env.REACT_APP_API_URL}api/post/comment-post/${postId}`,
-      data: { commenterId, text, commenterPseudo },
-    })
-      .then((res) => {
-        dispatch({ type: ADD_COMMENT, payload: { postId } });
-      })
-      .catch((err) => console.log(err));
-  };
-};
- */
-
-
-

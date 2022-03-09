@@ -48,7 +48,7 @@ export const editComment = (postId, commentId, text) => {
 export const deleteComment = (postId, commentId) => {
   return (dispatch) => {
     return axios({
-      method: "patch", //patch et non delete pour mettre à jour un tableau à l'intérieur du post
+      method: "patch", 
       url: `${process.env.REACT_APP_API_URL}api/comment/delete-comment-post/${postId}`,
       data: { commentId },
     })

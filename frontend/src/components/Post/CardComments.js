@@ -5,7 +5,7 @@ import EditDeleteComment from "./EditDeleteComment";
 import { addComment, getComments } from "../../actions/comment.actions";
 import { getPosts } from "../../actions/post.actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowAltCircleRight, faArrowTurnRight, faArrowTurnUp, faLongArrowAltRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowTurnUp} from "@fortawesome/free-solid-svg-icons";
 
 const CardComments = ({ post }) => {
   const [text, setText] = useState("");

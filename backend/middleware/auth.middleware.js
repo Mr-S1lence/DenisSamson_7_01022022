@@ -16,11 +16,11 @@ module.exports.checkUser = (req, res, next) => {
         const sql =
           "SELECT user_id FROM users WHERE user_id ='" + decodedToken.id + "';";
         db.query(sql, async (err, result) => {
-          if (result[0].user_id) {
-            res.locals.user = result[0].user_id;
-            next();
+            if(result.length === 0){
+                res.locals.user = null;
           } else {
-            res.locals.user = null;
+            res.locals.user = result[0].user_id;
+            next();  
           }
         });
       }

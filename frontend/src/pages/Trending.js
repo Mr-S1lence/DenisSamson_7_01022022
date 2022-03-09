@@ -11,7 +11,7 @@ const Trending = () => {
         <div className="home">
           <LeftNav />
           <div className="main">
-            <div>Hello depuis Trending</div>
+            <div>Construction de la page en cours</div>
           </div>
         </div>
       ) : (
