@@ -4,8 +4,6 @@ const db = database.getDB();
 
 module.exports.checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
-  /*  console.log(req.cookies.jwt); */
-
   if (token) {
     jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
       if (err) {
@@ -36,7 +34,7 @@ module.exports.checkUser = (req, res, next) => {
 module.exports.requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
-    jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodeToken) => {
+    jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
       if (err) {
         console.log(err);
         res.cookie("jwt", "", { maxAge: 1 });

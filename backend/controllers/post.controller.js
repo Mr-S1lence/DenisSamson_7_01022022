@@ -18,7 +18,6 @@ module.exports.readPost = (req, res) => {
     "LEFT JOIN comments ON p.post_id = comments.postId " +
     "GROUP BY `post_id` ORDER BY createdAt DESC;";
 
-    console.log(sql);
   try {
     db.query(sql, async (err, result) => {
       if (err == null) {
@@ -75,7 +74,6 @@ module.exports.createPost = async (req, res) => {
 
   try {
     db.query(sql, async (err, result) => {
-      /* console.log(err); */
       if (err == null) {
         res.json(result[0]);
       } else {
