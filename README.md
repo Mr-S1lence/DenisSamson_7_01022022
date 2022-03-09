@@ -13,7 +13,7 @@ Depuis le dossier backend :
 
 Depuis le dossier backend :
 ### `npm install`
-### `nodemon start`
+### `npm start`
 
 Depuis le dossier backend :
 ### `npm install`
