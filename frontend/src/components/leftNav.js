@@ -5,29 +5,37 @@ import { faHouse, faRocket, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const LeftNav = () => {
   return (
-    <div className="left-nav-container">
-      <div className="icons">
-        <div className="icons-bis">
-          <NavLink
-            to="/"
-            className={({ isActive }) => "left-nav" + (isActive ? ' active-left-nav' : '')}
-          >
-            <FontAwesomeIcon icon={faHouse} size="2x" color="#FD2D01" />
-          </NavLink>
-          <br />
-          <NavLink
-           to="/trending"
-            className={({ isActive }) => "left-nav"+ (isActive ? ' active-left-nav' : '')}
-          >
-            <FontAwesomeIcon icon={faRocket} size="2x" color="#FD2D01" />
-          </NavLink>
-          <br />
-          <NavLink
-            to="/profil"
-            className={({ isActive }) => "left-nav" + (isActive ? ' active-left-nav' : '')}
-          >
-            <FontAwesomeIcon icon={faUser} size="2x" color="#FD2D01" />
-          </NavLink>
+    <div>
+      <div className="left-nav-container">
+        <div className="icons">
+          <div className="icons-bis">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                "left-nav" + (isActive ? " active-left-nav" : "")
+              }
+            >
+              <FontAwesomeIcon icon={faHouse} size="2x" color="white" />
+            </NavLink>
+            <br />
+            <NavLink
+              to="/trending"
+              className={({ isActive }) =>
+                "left-nav" + (isActive ? " active-left-nav" : "")
+              }
+            >
+              <FontAwesomeIcon icon={faRocket} size="2x" color="white" />
+            </NavLink>
+            <br />
+            <NavLink
+              to="/profil"
+              className={({ isActive }) =>
+                "left-nav" + (isActive ? " active-left-nav" : "")
+              }
+            >
+              <FontAwesomeIcon icon={faUser} size="2x" color="white" />
+            </NavLink>
+          </div>
         </div>
       </div>
     </div>

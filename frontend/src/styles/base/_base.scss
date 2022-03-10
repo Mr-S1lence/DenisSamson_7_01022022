@@ -3,6 +3,8 @@ body {
 /*   background: $color-2; */
 }
 
+
+
 button{
   width: 8rem;
   height: 2rem;
@@ -33,8 +35,13 @@ a, a:visited{
 /*   width: 90%; */
 /*   display: grid;
   grid-template-columns: 1fr; */
-  justify-content: center;
-  align-content: center;
+    margin-left: 3rem;
+/*     display: flex; */
+    flex-direction: column;
+ /*    justify-content: center; */
+    margin: auto;
+
+  
 }
 
 

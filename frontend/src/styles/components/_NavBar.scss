@@ -1,26 +1,30 @@
 .nav-container {
-  margin-top: 0.5rem;
-  background-color: white;
+  
+
   text-align: center;
   .logo {
-    /*         border: red solid 1px; */
+    position: relative;
+    z-index: 2;
     padding: 0.5rem 0 0.5rem 0;
-
+    background: linear-gradient($color-1, 75%, $color-2);
     img {
-      margin: auto;
+      margin-bottom: 0.7rem 0;
       height: auto;
-      width: 15rem;
+      width: 20rem;
+      padding-bottom: 0.5rem;
+      
+      border-bottom: solid 2px white;
     }
   }
 
   ul {
-    /*         border: blue solid 1px; */
     border-bottom: 1px solid #fd2d01;
     border-top: 1px solid #fd2d01;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0;
+    z-index: -2;
     li {
       margin: 0 1rem 0 1rem;
     }
@@ -29,29 +33,7 @@
       height: 3rem;
       border-radius: 50%;
       object-fit: cover;
+      margin-left: 3rem;
     }
   }
 }
-
-/* .nav-container{
-    border-bottom : 3px solid #FD2D01;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.user-img img{
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-}
-
-.nav-container ul{
-    display: flex;
-    align-items: center;
-}
-
-.logo img{
-    height: 5rem;
-    width: auto;
-} */
