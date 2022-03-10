@@ -1,83 +1,61 @@
-.comment-container{
-margin: 1rem 0 0 0;
-padding: 1rem 0 0 0;
-border-top: solid 1px $color-1;
-text-align: center;
+.comment-container {
+  margin: 1rem 0 0 0;
+  padding: 1rem 0 0 0;
+  border-top: solid 1px $color-1;
+  text-align: center;
 
-    p, h3{
-        text-align: left;
-    }
-    p{
-        margin: 0 0.5rem;
-    }
-
-
+  p,
+  h3 {
+    text-align: left;
+  }
+  p {
+    margin: 0 0.5rem;
+  }
 }
 
-
-
-.comments-container{
-    input{
-        width: 8rem;
-        height: 2rem;
-        border-radius: 2rem;
-        background-color: $color-2;
-        margin: 0.5rem 0.5rem;
-    }
-    
+.comments-container {
+  input {
+    width: 8rem;
+    height: 2rem;
+    border-radius: 2rem;
+    background-color: $color-2;
+    margin: 0.5rem 0.5rem;
+  }
 }
 
-.comments-container .comment-container:last-child{
-    border: solid 1px $color-1;
-    
+.comments-container .comment-container:last-child {
+  border: solid 1px $color-1;
 }
 
-
-
-  
-
-.comment-form{
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    padding-top: 1rem;
-
+.comment-form {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  padding-top: 1rem;
 }
 
-/* .comment-form input:first-child{
-    width: 100%;
-    height: 4rem;
-} */
-
-.comment-header{
-    display: flex;
-    padding: 0 0.5rem;
-    align-items: center;
-    margin-bottom: 1rem;
-    svg{
-        transform: rotate(90deg);
-        margin-right: 1rem;
-    }
-    span, h3{
-        margin: 0rem 0 0rem 0.5rem;
-    }
+.comment-header {
+  display: flex;
+  padding: 0 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  svg {
+    transform: rotate(90deg);
+    margin-right: 1rem;
+  }
+  span,
+  h3 {
+    margin: 0rem 0 0rem 0.5rem;
+  }
 }
 
-.comment-header img{
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    object-fit: cover;
+.comment-header img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-
-.edit-comment{
-margin: 0.5rem
+.edit-comment {
+  margin: 0.5rem;
 }
-/* .comment-form textarea{
-    width: 16rem;
-    margin: auto;
-    height: 5rem;
-    border-radius: 20px;
-    padding: 0.5rem;
-  } */

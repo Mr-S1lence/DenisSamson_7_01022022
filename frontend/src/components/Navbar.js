@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { UidContext } from "./AppContext";
 import logo from "./../assets/logo-white.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import Logout from "./Log/logout";
 
 const Navbar = () => {

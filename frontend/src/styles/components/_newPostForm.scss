@@ -1,12 +1,10 @@
-.post-container{
-
+.post-container {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
 
-  .post-form{
-
-    textarea{
+  .post-form {
+    textarea {
       width: 17rem;
       margin: auto;
       height: 5rem;
@@ -14,34 +12,30 @@
       padding: 0.5rem;
     }
   }
-
 }
 
-
-.footer-form{
+.footer-form {
   display: flex;
   justify-content: flex-end;
   margin-top: 0.5rem;
   align-items: center;
   max-width: 17rem;
-  
-    input {
-        width: 25px;
-        height: 25px;
-        position: absolute;
-        transform: translate(-25px, -3px);
-        opacity: 0;
-        cursor: pointer;
-    
-        &::-webkit-file-upload-button {
-          cursor: pointer;
-        }
-      }
+
+  input {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    transform: translate(-25px, -3px);
+    opacity: 0;
+    cursor: pointer;
+
+    &::-webkit-file-upload-button {
+      cursor: pointer;
+    }
+  }
 }
 
-.content img{
+.content img {
   width: 20rem;
   height: auto;
 }
-
- 

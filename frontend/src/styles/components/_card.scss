@@ -1,5 +1,3 @@
-
-
 .thread-container {
   display: flex;
   justify-content: center;
@@ -10,8 +8,6 @@
 
 .card-container {
   margin-top: 1rem;
-  /*   display: grid;
-  grid-template-columns: 1fr; */
   border: solid 1px $color-1;
   background-color: white;
   border-radius: 2rem;
@@ -19,24 +15,16 @@
   justify-content: center;
   width: 18rem;
   word-break: break-word;
-  /*     .card-left{
-        padding-top: 0.5rem;
-        display: flex;
-        justify-content: center;
-    } */
   .card {
-    /*     border: solid yellow 1px; */
-/*     width: 100%; */
-    padding:  0.5rem 0rem 1rem 0rem;
+    padding: 0.5rem 0rem 1rem 0rem;
 
-    .btn{
-       margin: 1rem 0;
+    .btn {
+      margin: 1rem 0;
     }
-    textarea{
+    textarea {
       width: 16rem;
       margin: auto;
       height: 5rem;
- /*      border-radius: 20px; */
       padding: 0.5rem;
     }
 
@@ -45,7 +33,8 @@
       justify-content: center;
       align-items: center;
 
-      h3, span {
+      h3,
+      span {
         margin: 0.5rem 0 0 0.5rem;
       }
       .img-profil img {
@@ -53,7 +42,6 @@
         height: 3rem;
         border-radius: 50%;
         object-fit: cover;
-        /*         border: solid 1px #fd2d01; */
       }
     }
 
@@ -72,15 +60,15 @@
     .content {
       text-align: center;
 
-      p{
+      p {
         text-align: left;
         margin: 0.5rem;
         overflow-wrap: break-word;
       }
-      iframe{
-          width: 250px;
-          height:150px;
-          margin: auto;
+      iframe {
+        width: 250px;
+        height: 150px;
+        margin: auto;
       }
       display: flex;
       flex-direction: column;
@@ -98,20 +86,20 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      span{
+      span {
         margin: 0 1rem 0 0rem;
       }
-      svg{
+      svg {
         margin: 0 0.5rem 0 1rem;
       }
       .button-card {
         display: flex;
-/*         svg {
-          margin: 0 0.3rem 0 0.3rem;
-        } */
-        span{
+        span {
           padding: 2px 0 0 0;
         }
+      }
+      .like-container svg {
+        cursor: pointer;
       }
     }
   }

@@ -1,25 +1,26 @@
 body {
   margin: 0;
-/*   background: $color-2; */
 }
 
+*[class^="button"] {
+  cursor: pointer;
+}
 
-
-button{
+button {
   width: 8rem;
   height: 2rem;
   border-radius: 2rem;
   background-color: $color-2;
+  cursor: pointer;
 }
 
-a, a:visited{
+a,
+a:visited {
   color: black;
   font-size: 1.2rem;
-
 }
 
 * {
-  /*     margin: 0.3rem; */
   padding: 0;
   list-style-type: none;
   outline: none;
@@ -31,26 +32,14 @@ a, a:visited{
   }
 }
 
-.main{
-/*   width: 90%; */
-/*   display: grid;
-  grid-template-columns: 1fr; */
-    margin-left: 3rem;
-/*     display: flex; */
-    flex-direction: column;
- /*    justify-content: center; */
-    margin: auto;
-
-  
+.main {
+  margin-left: 3rem;
+  flex-direction: column;
+  margin: auto;
 }
-
 
 textarea {
   resize: none;
   background: white;
 }
-/* textarea {
-  &:focus {
-    box-shadow: 0 0 4px rgba(0, 22, 44, 0.1);
-  }
-} */
+

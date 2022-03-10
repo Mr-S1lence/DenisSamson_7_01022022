@@ -1,6 +1,4 @@
 .nav-container {
-  
-
   text-align: center;
   .logo {
     position: relative;
@@ -12,14 +10,13 @@
       height: auto;
       width: 20rem;
       padding-bottom: 0.5rem;
-      
       border-bottom: solid 2px white;
     }
   }
 
   ul {
-    border-bottom: 1px solid #fd2d01;
-    border-top: 1px solid #fd2d01;
+    border-bottom: 2px solid $color-1;
+    border-top: 1px solid $color-1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,6 +24,9 @@
     z-index: -2;
     li {
       margin: 0 1rem 0 1rem;
+    }
+    li:last-child {
+      cursor: pointer;
     }
     .user-img img {
       width: 3rem;

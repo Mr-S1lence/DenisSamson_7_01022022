@@ -1,29 +1,21 @@
-/* .profil-page{
-  display: grid;
-  grid-template-columns: 3rem auto;
-} */
-
 .profil-page > div {
   display: flex;
   justify-content: center;
 }
 
 .profil-container {
-/*   display: grid;
-  grid-template-columns: auto;
-  justify-content: center; */
   text-align: center;
   margin-left: 3rem;
-  
+
   .left-part {
     width: 20rem;
     margin: auto;
-    .upload-pic{
+    .upload-pic {
       background-color: white;
-      margin: 1rem ;
+      margin: 1rem;
       padding: 0.5rem 0;
       border-radius: 2rem;
-      .input-file{
+      .input-file {
         background-color: white;
         border-radius: 0;
         width: 16rem;
