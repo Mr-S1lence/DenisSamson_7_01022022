@@ -44,7 +44,6 @@ module.exports.updateComment = (req, res) => {
 
 module.exports.deleteComment = (req, res) => {
   const sql = `DELETE FROM comments WHERE comment_id = "${req.params.id}";`;
-  console.log(sql);
   db.query(sql, async (err, result) => {
     if (err == null) {
       res.json(result[0]);
