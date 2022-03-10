@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { UidContext } from "./AppContext";
-import logo from "./../assets/logo-white.png";
+import logo from "./../assets/logo-black.png";
 import Logout from "./Log/logout";
 
 const Navbar = () => {

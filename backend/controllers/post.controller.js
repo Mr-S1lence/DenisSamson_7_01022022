@@ -123,7 +123,6 @@ module.exports.unlikePost = async (req, res) => {
 
 module.exports.getLikePostByUser = async (req, res) => {
   const sql = `SELECT postId FROM likes WHERE userId = "${req.params.id}"`;
-  console.log(sql);
   db.query(sql, async (err, result) => {
     if (err == null) {
       res.json(result);

@@ -20,6 +20,13 @@
     border-radius: 2rem;
     background-color: $color-2;
     margin: 0.5rem 0.5rem;
+    cursor: pointer;
+  }
+  p{
+      text-align: justify;
+  }
+  svg{
+      cursor: pointer;
   }
 }
 
