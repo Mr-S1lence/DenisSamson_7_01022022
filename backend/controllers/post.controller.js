@@ -16,8 +16,10 @@ module.exports.readPost = (req, res) => {
     "FROM posts p " +
     "LEFT JOIN likes ON p.post_id = likes.postId " +
     "LEFT JOIN comments ON p.post_id = comments.postId " +
+    "LEFT JOIN users ON p.posterId = users.user_id WHERE users.disabled = 0 " +
     "GROUP BY `post_id` ORDER BY createdAt DESC;";
 
+  console.log(sql);
   try {
     db.query(sql, async (err, result) => {
       if (err == null) {
@@ -59,8 +61,9 @@ module.exports.createPost = async (req, res) => {
   const post_Id = Date.now() + Math.random();
   const picture = req.file !== null ? "./uploads/posts/" + fileName : "";
 
-  const sql = `INSERT INTO posts (post_Id, posterId, message, picture, video, createdAt) `+
-  `VALUES ("${post_Id}","${req.body.posterId}","${req.body.message}","${picture}","${req.body.video}", NOW());`;
+  const sql =
+    `INSERT INTO posts (post_Id, posterId, message, picture, video, createdAt) ` +
+    `VALUES ("${post_Id}","${req.body.posterId}","${req.body.message}","${picture}","${req.body.video}", NOW());`;
 
   try {
     db.query(sql, async (err, result) => {

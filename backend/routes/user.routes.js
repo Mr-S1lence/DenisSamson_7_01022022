@@ -16,4 +16,6 @@ router.put("/:id", userController.updateUser);
 
 router.post("/upload", upload.single("file"), uploadController.uploadProfil);
 
+router.post("/desactivate/:id", userController.desactivateUser);
+
 module.exports = router;

@@ -18,7 +18,8 @@ module.exports.createComment = (req, res) => {
 module.exports.readComment = (req, res) => {
   const sql =
     `SELECT c.comment_id AS _id, c.commenterId, c.text, c.createdAt, c.postId, users.firstname, users.lastname `+
-    `FROM comments c LEFT JOIN users ON c.commenterId = users.user_id WHERE c.postId = "${req.params.id}" ORDER BY createdAt ASC;`;
+    `FROM comments c `+
+    `LEFT JOIN users ON c.commenterId = users.user_id WHERE c.postId = "${req.params.id}" AND users.disabled = 0 ORDER BY createdAt ASC;`;
 
   db.query(sql, async (err, result) => {
     if (err == null) {

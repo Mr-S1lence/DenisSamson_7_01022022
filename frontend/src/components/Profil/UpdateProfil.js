@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import UploadImg from "./uploadImg";
 import { updateBio } from "../../actions/user.actions";
 import { dateParser } from "../Utils";
+import DesactivateAccount from "./desactivateAccount";
 
 const UpdateProfil = () => {
   const [bio, setBio] = useState("");
@@ -62,6 +63,7 @@ const UpdateProfil = () => {
             <h5>
               Abonnés : {userData.followers ? userData.followers.length : ""}
             </h5>
+            <DesactivateAccount userId={userData._id}/>
           </div>
         </div>
       </div>

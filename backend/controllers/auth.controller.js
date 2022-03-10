@@ -20,7 +20,7 @@ exports.signUp = async (req, res) => {
 
   if ((await checkEmail(email)) == true) {
     const sql =
-      `INSERT INTO users (user_id, firstname, lastname, email, password, createdAt) `+
+      `INSERT INTO users (user_id, firstname, lastname, email, password, createdAt) ` +
       `VALUES ("${uid}", "${firstname}", "${lastname}", "${email}", "${salt}", NOW());`;
     try {
       db.query(sql, (err, result) => {
@@ -44,7 +44,7 @@ exports.signUp = async (req, res) => {
 module.exports.signIn = async (req, res) => {
   const db = database.getDB();
   const { email, password } = req.body;
-  const sql = `SELECT password, user_id FROM users WHERE email = "${email}";`;
+  const sql = `SELECT password, user_id, disabled FROM users WHERE email = "${email}";`;
 
   db.query(sql, [email], async (err, results) => {
     let errors = { email: "", password: "" };
@@ -56,6 +56,13 @@ module.exports.signIn = async (req, res) => {
       errors.email = "Email inconnu !";
       return res.status(200).json({ errors });
     }
+
+    if (results[0].disabled === 1) {
+      errors.email =
+        "Il semblerait que votre compte soit désactivé. Veuillez contacter un administrateur.";
+      return res.status(200).json({ errors });
+    }
+
     if (results[0]) {
       bcrypt
         .compare(password, results[0].password) //User trouvé : comparration des mdp avec bcrypt
