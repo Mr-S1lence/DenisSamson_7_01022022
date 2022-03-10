@@ -1,7 +1,7 @@
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteComment, getComments } from "../../actions/comment.actions";
 import { editComment } from "../../actions/comment.actions";
 import { getPosts } from "../../actions/post.actions";
@@ -12,6 +12,7 @@ const EditDeleteComment = ({ comment, postId }) => {
   const [edit, setEdit] = useState(false);
   const [text, setText] = useState("");
   const uid = useContext(UidContext);
+  const userData = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
 
   const handleEdit = (e) => {
@@ -32,7 +33,7 @@ const EditDeleteComment = ({ comment, postId }) => {
 
   useEffect(() => {
     const checkAuthor = () => {
-      if (uid === comment.commenterId) {
+      if (uid === comment.commenterId || userData.status === 1) {
         setIsAuthor(true);
       }
     };
@@ -51,13 +52,6 @@ const EditDeleteComment = ({ comment, postId }) => {
             Editer
           </label>
           <br />
-{/*           <input
-            type="text"
-            name="text"
-            onChange={(e) => setText(e.target.value)}
-            defaultValue={comment.text}
-          /> */}
-
           <textarea
             defaultValue={comment.text}
             onChange={(e) => setText(e.target.value)}

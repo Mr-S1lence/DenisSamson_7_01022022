@@ -33,6 +33,11 @@ const Card = ({ post }) => {
     !isEmpty(usersData[0]) && setIsLoading(false);
   }, [usersData]);
 
+  let deleteButton;
+  if (userData._id === post.posterId || userData.status === 1) {
+    deleteButton = <DeleteCard id={post._id} />;
+  }
+
   return (
     <li className="card-container" key={post._id}>
       {isLoading ? (
@@ -69,34 +74,34 @@ const Card = ({ post }) => {
               </div>
             </div>
             <div className="card-content">
-            {isUpdated === false && <p>{post.message}</p>}
-            {isUpdated && (
-              <div className="update-post">
-                <textarea
-                  defaultValue={post.message}
-                  onChange={(e) => setTextUpdate(e.target.value)}
-                />
-                <div className="button-container">
-                  <button className="btn" onClick={updateItem}>
-                    Valider modification
-                  </button>
+              {isUpdated === false && <p>{post.message}</p>}
+              {isUpdated && (
+                <div className="update-post">
+                  <textarea
+                    defaultValue={post.message}
+                    onChange={(e) => setTextUpdate(e.target.value)}
+                  />
+                  <div className="button-container">
+                    <button className="btn" onClick={updateItem}>
+                      Valider modification
+                    </button>
+                  </div>
                 </div>
-              </div>
-            )}
-            {post.picture && (
-              <img src={post.picture} alt="card-pic" className="card-pic" />
-            )}
-            {post.video && (
-              <iframe
-                width="250"
-                height="150"
-                src={post.video}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title={post._id}
-              ></iframe>
-            )}
+              )}
+              {post.picture && (
+                <img src={post.picture} alt="card-pic" className="card-pic" />
+              )}
+              {post.video && (
+                <iframe
+                  width="250"
+                  height="150"
+                  src={post.video}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={post._id}
+                ></iframe>
+              )}
             </div>
             <div className="card-footer">
               {userData._id === post.posterId && (
@@ -108,10 +113,9 @@ const Card = ({ post }) => {
                       color="#FD2D01"
                     />
                   </div>
-                  <DeleteCard id={post._id} />
                 </div>
               )}
-
+              <div>{deleteButton}</div>
               <div
                 className="button-card"
                 onClick={() => setShowComments(!showComments)}
@@ -122,8 +126,6 @@ const Card = ({ post }) => {
                   color="#FD2D01"
                 />
                 <span>{post.comments}</span>
-
-                
               </div>
               <LikeButton post={post} />
             </div>

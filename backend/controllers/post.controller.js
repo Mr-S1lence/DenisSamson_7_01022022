@@ -19,7 +19,6 @@ module.exports.readPost = (req, res) => {
     "LEFT JOIN users ON p.posterId = users.user_id WHERE users.disabled = 0 " +
     "GROUP BY `post_id` ORDER BY createdAt DESC;";
 
-  console.log(sql);
   try {
     db.query(sql, async (err, result) => {
       if (err == null) {
