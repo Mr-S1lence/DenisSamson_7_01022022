@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `postId` varchar(255) DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table projet7.comments : ~7 rows (environ)
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
@@ -36,9 +36,10 @@ INSERT INTO `comments` (`id`, `comment_id`, `commenterId`, `text`, `createdAt`, 
 	(17, '0.9922239010533465', '98890398-61f6-42f8-a838-3476f2716c3f', 'Illud tamen clausos vehementer angebat quod captis navigiis, quae frumenta vehebant per flumen, Isauri quidem alimentorum copiis adfluebant, ipsi vero solitarum rerum cibos iam consumendo inediae propinquantis aerumnas exitialis horrebant.', '2022-03-09 18:04:28', '1646844721045.9617', NULL),
 	(19, '0.13111579803336193', 'f7d2622b-649e-4932-8e1f-dff3c42dfb4d', 'vehementer angebatdd', '2022-03-09 18:55:23', '1646848394302.493', '2022-03-10 22:27:41'),
 	(20, '0.048952301992933434', 'e9ecb671-db4e-420a-bc83-ca5c0e684b55', ';)', '2022-03-09 18:59:26', '1646845560941.3008', NULL),
-	(25, '0.3946405583292729', 'e9ecb671-db4e-420a-bc83-ca5c0e684b55', 'hey', '2022-03-09 22:06:16', '1646857823802.4658', NULL),
+	(25, '0.3946405583292729', 'e9ecb671-db4e-420a-bc83-ca5c0e684b55', 'Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.', '2022-03-09 22:06:16', '1646857823802.4658', NULL),
 	(29, '0.06384171606833045', 'e9ecb671-db4e-420a-bc83-ca5c0e684b55', 'Proinde concepta rabie saeviore, quam desperatio incendebat et fames, amplificatis viribus ardore incohibili in link excidium urbium matris Seleuciae efferebantur, quam comes tuebatur Castricius tresque legiones bellicis sudoribus induratae.\n', '2022-03-10 13:13:19', '1646914298088.7173', '2022-03-10 13:15:18'),
-	(38, '0.9441292564070258', '71d19cbd-eba1-42c9-96f4-e434fa3f38c0', 'testd', '2022-03-10 22:20:23', '1646945472572.138', '2022-03-10 22:21:10');
+	(38, '0.9441292564070258', '71d19cbd-eba1-42c9-96f4-e434fa3f38c0', 'Proinde concepta rabie saeviore, quam desperatio incendebat et fames', '2022-03-10 22:20:23', '1646945472572.138', '2022-03-10 22:21:10'),
+	(40, '0.4703032401676326', '71d19cbd-eba1-42c9-96f4-e434fa3f38c0', 'Nemo quaeso miretur, si post exsudatos labores itinerum longos congestosque adfatim commeatus fiducia vestri ductante barbaricos pagos adventans velut mutato repente consilio ad placidiora deverti.', '2022-03-10 23:25:31', '1646916939450.9138', NULL);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 
 -- Listage de la structure de la table projet7. likes
@@ -68,6 +69,7 @@ INSERT INTO `likes` (`postId`, `userId`) VALUES
 	('1646871307482.4863', '71d19cbd-eba1-42c9-96f4-e434fa3f38c0'),
 	('1646871307482.4863', 'bb3178d8-b2a1-4034-8c4b-d26fd0faf91c'),
 	('1646871307482.4863', 'f33df90b-cd45-405e-bd9e-657542009f4b'),
+	('1646916939450.9138', '71d19cbd-eba1-42c9-96f4-e434fa3f38c0'),
 	('1646916939450.9138', '98890398-61f6-42f8-a838-3476f2716c3f'),
 	('1646916939450.9138', 'bb3178d8-b2a1-4034-8c4b-d26fd0faf91c'),
 	('1646923959294.36', 'f33df90b-cd45-405e-bd9e-657542009f4b'),
@@ -89,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `picture` varchar(255) DEFAULT NULL,
   `video` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table projet7.posts : ~12 rows (environ)
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
@@ -117,24 +119,27 @@ CREATE TABLE IF NOT EXISTS `users` (
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `status` int NOT NULL DEFAULT '1',
+  `status` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Listage des données de la table projet7.users : ~9 rows (environ)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`ID`, `user_id`, `email`, `password`, `createdAt`, `disabled`, `picture`, `bio`, `firstname`, `lastname`, `updatedAt`, `status`) VALUES
 	(2, '71d19cbd-eba1-42c9-96f4-e434fa3f38c0', 'claire@gmail.com', '$2b$10$4pvToV80m16Jx2hL2SOT0Ox6tcDUVSMgMzPvI93/IJ5B/X7axrrQO', '2022-03-09 17:48:12', 0, './uploads/profil/Claire.jpg', 'Coucou c\'est moi !!!!!', 'Claire', 'Dupont', '2022-03-09 20:43:06', 1),
-	(3, '98890398-61f6-42f8-a838-3476f2716c3f', 'eric@gmail.com', '$2b$10$ZK01.7R/wC6m/CqaodN/m.XuuGcB2KjENeW1fxxilPEOrpcOaBUSy', '2022-03-09 18:00:53', 0, './uploads/profil/Eric.jpg', '', 'Eric', 'Hervieux', '2022-03-10 17:16:37', 0),
+	(3, '98890398-61f6-42f8-a838-3476f2716c3f', 'eric@gmail.com', '$2b$10$ZK01.7R/wC6m/CqaodN/m.XuuGcB2KjENeW1fxxilPEOrpcOaBUSy', '2022-03-09 18:00:53', 0, './uploads/profil/Eric.jpg', '', 'Eric', 'Hervieux', '2022-03-11 04:10:23', 0),
 	(5, 'e9ecb671-db4e-420a-bc83-ca5c0e684b55', 'delphine@gmail.com', '$2b$10$Uo4fzXmeGC4vJmo1NIErXe82A1eFnww0uNAyRqOIEHWT02S40GCP.', '2022-03-09 18:08:46', 0, './uploads/profil/Delphine.jpg', '\n\nProinde concepta rabie saeviore, quam desperatio incendebat et fames, amplificatis viribus ardore incohibili in excidium urbium matris Seleuciae efferebantur, quam comes tuebatur Castricius tresque legiones bellicis sudoribus induratae.\n', 'Delphine', 'Bordeleau', '2022-03-10 13:12:47', 0),
 	(6, 'f7d2622b-649e-4932-8e1f-dff3c42dfb4d', 'luc@gmail.com', '$2b$10$dhxOibYlYz6H.AryWJtfPeEMdKioCUl8NwOAPIvERBjleBowmbLvC', '2022-03-09 18:52:22', 0, './uploads/profil/Luc.jpg', NULL, 'Luc', 'Auberjonoi', '2022-03-09 18:53:41', 0),
 	(7, 'db406de6-2b49-4bdd-bc9b-306e455faa45', 'bernard@gmail.com', '$2b$10$CXApviwYibADeyEMTwFn/u/nJYvtNldevRePmqQ96q0SfaPbz6vL6', '2022-03-09 22:19:08', 0, './uploads/profil/Bernard.jpg', NULL, 'Bernard', 'Hou', '2022-03-09 22:20:13', 0),
 	(9, 'f33df90b-cd45-405e-bd9e-657542009f4b', 'stephanie@gmail.com', '$2b$10$OdwmerOExFiEVHq9u7Mdfugw0IB9fG5C4I6301BVK3FFc7szTyYjS', '2022-03-10 15:51:17', 0, './uploads/profil/Stéphanie.jpg', 'Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi, patre ddddddConstantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.', 'Stéphanie', 'Dupont', '2022-03-10 15:53:43', 0),
 	(11, 'bb3178d8-b2a1-4034-8c4b-d26fd0faf91c', 'nicolas@gmail.com', '$2b$10$TDKTAEtoxYd3X6Ye3BhUfOCwdTnJYNXuqeLGqAG/yuS25bZPIK3fe', '2022-03-10 16:11:12', 0, './uploads/profil/Nicolas.jpg', 'Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio dddddd imperasset. natus apud Tuscos in Massa Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.', 'Nicolas', 'Dupont', '2022-03-10 16:12:01', 0),
-	(17, '31fa7be5-aac3-47e5-acb0-b41a9e2b73fe', 'brigitte@gmail.com', '$2b$10$b7YW8NxGr4pSxfZCMgJQfO00eNLF9PObkHtw8DeHEPOKA3WZbdYmK', '2022-03-10 17:30:45', 0, './uploads/profil/Brigitte.jpg', 'test', 'Brigitte', 'Dupont', '2022-03-10 17:32:29', 0),
-	(19, '567029ad-b3f2-4a1e-990f-65a08c1193d9', 'henry@gmail.com', '$2b$10$AviKnykp.vcm/PY8wP5YfOn25OlJ3cqKahEjHp2LiArDrTcsOnBUO', '2022-03-10 18:08:31', 0, './uploads/profil/Henry.jpg', 'test', 'Henry', 'Dupont', '2022-03-10 18:10:24', 0);
+	(17, '31fa7be5-aac3-47e5-acb0-b41a9e2b73fe', 'brigitte@gmail.com', '$2b$10$b7YW8NxGr4pSxfZCMgJQfO00eNLF9PObkHtw8DeHEPOKA3WZbdYmK', '2022-03-10 17:30:45', 0, './uploads/profil/Brigitte.jpg', 'Nemo quaeso miretur, si post exsudatos labores itinerum longos congestosque adfatim commeatus fiducia vestri ductante barbaricos pagos adventans velut mutato repente consilio ad placidiora deverti.', 'Brigitte', 'Dupont', '2022-03-10 17:32:29', 0),
+	(19, '567029ad-b3f2-4a1e-990f-65a08c1193d9', 'henry@gmail.com', '$2b$10$AviKnykp.vcm/PY8wP5YfOn25OlJ3cqKahEjHp2LiArDrTcsOnBUO', '2022-03-10 18:08:31', 0, './uploads/profil/Henry.jpg', 'Proinde concepta rabie saeviore, quam desperatio incendebat et fames', 'Henry', 'Dupont', '2022-03-10 18:10:24', 0),
+	(20, 'fc6b88bf-4f2f-451d-8270-46147bb32fc6', 'marie@gmail.com', '$2b$10$LLlV9qOiWZ3nNIO3u7lSV.TURJQ0ysaAdhhlXByCQ.kL1e4ANpObe', '2022-03-11 00:36:41', 0, './uploads/profil/random-user.png', NULL, 'Marie', 'Blanc', NULL, 0),
+	(21, '0ebe95f7-14cb-4e4d-911c-9ccfb2239944', 'francis@gmail.com', '$2b$10$wD1H0gRwaLyZsvUsY1KmW.c.cQAnO6jjqFyxjYYduVcd4B7oChaHq', '2022-03-11 02:06:24', 1, './uploads/profil/random-user.png', NULL, 'Francis', 'Bricot', NULL, 0),
+	(22, 'be91ce4c-a51c-49d0-b8d1-f31742f1f111', 'alain@gmail.com', '$2b$10$ab3bPuSdZs44b3rWjP68beNVJokW8b6hvHUX3Cg5r3FNG5/It9pQy', '2022-03-11 03:50:43', 0, './uploads/profil/random-user.png', NULL, 'Alain', 'Dupont', NULL, 0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -45,8 +45,9 @@ module.exports.desactivateUser = async (req, res) => {
     if (err) {
       res.status(200).send(err);
     } else {
-      res.cookie("jwt", "", { maxAge: 1 });
+      res.clearCookie("jwt");
       res.redirect("/");
+      res.status(200).json("Account desactivate");
     }
   });
 };
