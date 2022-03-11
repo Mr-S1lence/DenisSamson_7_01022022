@@ -1,4 +1,4 @@
-@use 'sass:math';
+@use "sass:math";
 
 @import "./utils/variables";
 @import "./utils/mixins";
@@ -7,13 +7,13 @@
 
 @import "./layout/header";
 
-@import './components/log.scss';
-@import './components/NavBar.scss';
-@import './components/leftNav.scss';
-@import './components/profilContainer.scss';
-@import './components/card.scss';
-@import './components/newPostForm';
-@import './components/commentForm';
+@import "./components/log.scss";
+@import "./components/NavBar.scss";
+@import "./components/leftNav.scss";
+@import "./components/profilContainer.scss";
+@import "./components/card.scss";
+@import "./components/newPostForm";
+@import "./components/commentForm";
 
-@import './pages/profil.scss';
-@import './pages/home.scss';
+@import "./pages/profil.scss";
+@import "./pages/home.scss";

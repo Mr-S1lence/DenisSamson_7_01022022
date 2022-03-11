@@ -4,7 +4,7 @@
   left: 0;
   background-color: $color-1;
   z-index: 1;
-  transform: translateY(-172px);
+  transform: translateY(-190px);
   .left-nav svg {
     padding: 0.3rem;
     width: 2.4rem;
@@ -13,7 +13,7 @@
 
 .icons {
   position: -webkit-sticky;
-  transform: translateY(180px);
+  transform: translateY(205px);
   top: -50px;
   left: 0;
 }
@@ -25,6 +25,6 @@
   border-top: solid 1px #fd2d01;
   border-left: solid 3px #fd2d01;
   border-bottom: solid 3px #fd2d01;
-  color: black;
+  color: $color-1;
   background-color: white;
 }

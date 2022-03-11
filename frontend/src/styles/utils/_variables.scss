@@ -1,5 +1,8 @@
-$color-1: #ff7b77;
+/* $color-1: #ff7b77; */
 $color-2: #ffd6d6;
+
+$color-1: #091f43;
+$color-3: #d1515a;
 
 $breakpoints: (
   "mobile-down": 500px,
@@ -9,3 +12,5 @@ $breakpoints: (
   "laptop-down": 1280px,
   "desktop": 1440px,
 );
+
+$box-shadow: 0px 12px 5px -6px rgba(0,0,0,0.17);

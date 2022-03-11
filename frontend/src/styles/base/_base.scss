@@ -24,11 +24,11 @@ a:visited {
   padding: 0;
   list-style-type: none;
   outline: none;
-  border: solid 2px FD2D01;
   text-decoration: none;
 
   &::selection {
     background: $color-1;
+    color: white;
   }
 }
 
@@ -43,3 +43,7 @@ textarea {
   background: white;
 }
 
+.error{
+  color: red;
+  margin: 0.5rem;
+}

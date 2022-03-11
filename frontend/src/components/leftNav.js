@@ -15,7 +15,7 @@ const LeftNav = () => {
                 "left-nav" + (isActive ? " active-left-nav" : "")
               }
             >
-              <FontAwesomeIcon icon={faHouse} size="2x" color="black" />
+              <FontAwesomeIcon icon={faHouse} size="2x" color="white" />
             </NavLink>
             <br />
             <NavLink
@@ -24,7 +24,7 @@ const LeftNav = () => {
                 "left-nav" + (isActive ? " active-left-nav" : "")
               }
             >
-              <FontAwesomeIcon icon={faRocket} size="2x" color="black" />
+              <FontAwesomeIcon icon={faRocket} size="2x" color="white" />
             </NavLink>
             <br />
             <NavLink
@@ -33,7 +33,7 @@ const LeftNav = () => {
                 "left-nav" + (isActive ? " active-left-nav" : "")
               }
             >
-              <FontAwesomeIcon icon={faUser} size="2x" color="black" />
+              <FontAwesomeIcon icon={faUser} size="2x" color="white" />
             </NavLink>
           </div>
         </div>

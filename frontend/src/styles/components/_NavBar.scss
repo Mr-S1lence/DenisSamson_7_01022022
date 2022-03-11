@@ -4,19 +4,28 @@
     position: relative;
     z-index: 2;
     padding: 0.5rem 0 0.5rem 0;
-    background: linear-gradient($color-1, 75%, $color-2);
+    /* background: linear-gradient($color-1, 75%, $color-2); */
+    background: $color-1;
+    
     img {
       margin-bottom: 0.7rem 0;
       height: auto;
       width: 20rem;
       padding-bottom: 0.5rem;
-      border-bottom: solid 2px black;
+      border-bottom: solid 2px white;
+      @include media-min("mobile-down"){
+        margin-left: 3.3rem;
+      }
     }
+  }
+  .logo-signiIn img{
+    margin-left:0;
   }
 
   ul {
+    height: 4rem;
     border-bottom: 2px solid $color-1;
-    border-top: 1px solid $color-1;
+    box-shadow: $box-shadow;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,4 +45,8 @@
       margin-left: 3rem;
     }
   }
+}
+
+.welcome a{
+  font-size: 1.5rem;
 }

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { UidContext } from "./AppContext";
-import logo from "./../assets/logo-black.png";
+import logo from "./../assets/logo-white.png";
 import Logout from "./Log/logout";
 
 const Navbar = () => {
@@ -12,9 +12,9 @@ const Navbar = () => {
   return (
     <nav>
       <div className="nav-container">
-        <div className="logo">
+        <div  className={uid ? "logo" : "logo logo-signiIn"}>
           <NavLink to="/">
-            <div className="logo">
+            <div>
               <img src={logo} alt="icon" />
             </div>
           </NavLink>
