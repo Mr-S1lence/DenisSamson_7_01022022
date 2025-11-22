@@ -1,6 +1,7 @@
-const passwordValidator = require('password-validator');
+//const passwordValidator = require('password-validator');
+import passwordValidator from 'password-validator';
 
-var schema = new passwordValidator();
+const schema = new passwordValidator();
 
 schema
 .is().min(8)                                    // Minimum length 8
@@ -12,14 +13,30 @@ schema
 .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
 
 
-module.exports = (req, res, next) => {
-    if(schema.validate(req.body.password)){
-        next();
-    }else{
-        return res
-        .status(200)
-        .json({
-            errors : {email: '', password : `Le mot de passe doit avoir huit caractères minimum dont une majuscule, une minuscule et deux chiffres.`}
-        })
+// module.exports = (req, res, next) => {
+//     if(schema.validate(req.body.password)){
+//         next();
+//     }else{
+//         return res
+//         .status(200)
+//         .json({
+//             errors : {email: '', password : `Le mot de passe doit avoir huit caractères minimum dont une majuscule, une minuscule et deux chiffres.`}
+//         })
+//     }
+// }
+
+const passwordMiddleware = (req, res, next) => {
+    if (schema.validate(req.body.password)) {
+      next();
+    } else {
+      return res.status(200).json({
+        errors: {
+          email: '',
+          password: `Le mot de passe doit avoir huit caractères minimum dont une majuscule, une minuscule et deux chiffres.`,
+        },
+      });
     }
-}
+  };
+  
+  export default passwordMiddleware;
+
