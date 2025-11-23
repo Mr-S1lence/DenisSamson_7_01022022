@@ -15,7 +15,7 @@ const DesactivateAccount = () => {
   const desactivateAccount = async () => {
     await axios({
       method: "post",
-      url: `${process.env.REACT_APP_API_URL}api/user/desactivate/${userData._id}`,
+      url: `${import.meta.env.VITE_API_URL}/api/user/desactivate/${userData._id}`,
       withCredentials: true,
     })
       .then(() => removeCookie("jwt"))

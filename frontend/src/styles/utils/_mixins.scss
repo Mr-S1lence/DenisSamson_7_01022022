@@ -1,6 +1,9 @@
-@mixin media-min($key) {
-    @media screen and (min-width: map-get($breakpoints, $key)) {
-        &{ @content; }
-    }
-}
+@use './_variables' as vars;
+@use "sass:map";
 
+
+@mixin media-min($key) {
+  @media screen and (min-width: map.get(vars.$breakpoints, $key)) {
+    @content;
+  }
+}

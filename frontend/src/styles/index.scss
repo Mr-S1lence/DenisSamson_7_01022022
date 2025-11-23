@@ -1,19 +1,19 @@
 @use "sass:math";
 
-@use  "./utils/variables";
-@use  "./utils/mixins";
+@use  "./utils/_variables";
+@use  "./utils/_mixins";
 
-@use  "./base/base";
+@use  "./base/_base";
 
-@use  "./layout/header";
+@use  "./layout/_header";
 
-@use  "./components/log.scss";
-@use  "./components/NavBar.scss";
-@use "./components/leftNav.scss";
+@use  "./components/_log.scss";
+@use  "./components/_NavBar.scss";
+@use "./components/_leftNav.scss";
 @use "./components/profilContainer.scss";
-@use "./components/card.scss";
-@use "./components/newPostForm";
-@use "./components/commentForm";
+@use "./components/_card.scss";
+@use "./components/_newPostForm";
+@use "./components/_commentForm";
 
-@use "./pages/profil.scss";
-@use "./pages/home.scss";
+@use "./pages/_profil.scss";
+@use "./pages/_home.scss";

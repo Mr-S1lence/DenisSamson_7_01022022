@@ -9,7 +9,7 @@ export const GET_USER_ERRORS = "GET_USER_ERRORS";
 export const getUser = (uid) => {
   return (dispatch) => {
     return axios
-      .get(`${process.env.REACT_APP_API_URL}api/user/${uid}`)
+      .get(`${import.meta.env.VITE_API_URL}/api/user/${uid}`)
       .then((res) => {
         dispatch({ type: GET_USER, payload: res.data });
       })
@@ -20,16 +20,24 @@ export const getUser = (uid) => {
 export const uploadPicture = (data, id) => {
   return (dispatch) => {
     return axios
-      .post(`${process.env.REACT_APP_API_URL}api/user/upload`, data)
+      .post(`${import.meta.env.VITE_API_URL}/api/user/upload`, data, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.data.errors) {
           dispatch({ type: GET_USER_ERRORS, payload: res.data.errors });
         } else {
           dispatch({ type: GET_USER_ERRORS, payload: "" });
+
           return axios
-            .get(`${process.env.REACT_APP_API_URL}api/user/${id}`)
+            .get(`${import.meta.env.VITE_API_URL}/api/user/${id}`, {
+              withCredentials: true,
+            })
             .then((res) => {
-              dispatch({ type: UPLOAD_PICTURE, payload: res.data.picture });
+              dispatch({
+                type: UPLOAD_PICTURE,
+                payload: `${res.data.picture}?t=${Date.now()}`,
+              });
             });
         }
       })
@@ -41,10 +49,10 @@ export const updateBio = (userId, bio) => {
   return (dispatch) => {
     return axios({
       method: "put",
-      url: `${process.env.REACT_APP_API_URL}api/user/` + userId,
+      url: `${import.meta.env.VITE_API_URL}/api/user/` + userId,
       data: { bio },
     })
-      .then((res) => {
+      .then(() => {
         dispatch({ type: UPDATE_BIO, payload: bio });
       })
       .catch((err) => console.log(err));

@@ -1,3 +1,5 @@
+@use '../utils/_variables' as vars;
+
 .thread-container {
   display: flex;
   justify-content: center;
@@ -8,10 +10,10 @@
 
 .card-container {
   margin-top: 1rem;
-  border: solid 1px $color-1;
+  border: solid 1px vars.$color-1;
   background-color: white;
   border-radius: 2rem;
-  box-shadow: $box-shadow;
+  box-shadow: vars.$box-shadow;
   display: flex;
   justify-content: center;
   width: 18rem;

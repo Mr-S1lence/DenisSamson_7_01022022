@@ -1,3 +1,5 @@
+@use '../utils/_variables' as vars;
+
 body {
   margin: 0;
 }
@@ -10,7 +12,7 @@ button {
   width: 8rem;
   height: 2rem;
   border-radius: 2rem;
-  background-color: $color-2;
+  background-color: vars.$color-2;
   cursor: pointer;
 }
 
@@ -27,7 +29,7 @@ a:visited {
   text-decoration: none;
 
   &::selection {
-    background: $color-1;
+    background: vars.$color-1;
     color: white;
   }
 }

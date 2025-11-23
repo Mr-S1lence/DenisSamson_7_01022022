@@ -1,7 +1,9 @@
+@use '../utils/_variables' as vars;
+
 .comment-container {
   margin: 1rem 0 0 0;
   padding: 1rem 0 0 0;
-  border-top: solid 1px $color-1;
+  border-top: solid 1px vars.$color-1;
   text-align: center;
 
   p,
@@ -18,7 +20,7 @@
     width: 8rem;
     height: 2rem;
     border-radius: 2rem;
-    background-color: $color-2;
+    background-color: vars.$color-2;
     margin: 0.5rem 0.5rem;
     cursor: pointer;
   }
@@ -31,7 +33,7 @@
 }
 
 .comments-container .comment-container:last-child {
-  border: solid 1px $color-1;
+  border: solid 1px vars.$color-1;
 }
 
 .comment-form {

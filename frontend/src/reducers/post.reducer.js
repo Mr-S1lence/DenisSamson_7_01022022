@@ -5,7 +5,7 @@ import {
   UNLIKE_POST,
   GET_LIKES_POST_USER,
   UPDATE_POST,
-} from "../actions/post.actions";
+} from "../actions/post.actions.jsx";
 
 const initialState = {};
 

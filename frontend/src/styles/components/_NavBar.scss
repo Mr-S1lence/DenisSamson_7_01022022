@@ -1,11 +1,14 @@
+@use '../utils/_variables' as vars;
+@use '../utils/_mixins' as mix;
+
 .nav-container {
   text-align: center;
   .logo {
     position: relative;
     z-index: 2;
     padding: 0.5rem 0 0.5rem 0;
-    /* background: linear-gradient($color-1, 75%, $color-2); */
-    background: $color-1;
+    /* background: linear-gradient(vars.$color-1, 75%, vars.$color-2); */
+    background: vars.$color-1;
     
     img {
       margin-bottom: 0.7rem 0;
@@ -13,7 +16,7 @@
       width: 20rem;
       padding-bottom: 0.5rem;
       border-bottom: solid 2px white;
-      @include media-min("mobile-down"){
+      @include mix.media-min("mobile-down"){
         margin-left: 3.3rem;
       }
     }
@@ -24,8 +27,8 @@
 
   ul {
     height: 4rem;
-    border-bottom: 2px solid $color-1;
-    box-shadow: $box-shadow;
+    border-bottom: 2px solid vars.$color-1;
+    box-shadow: vars.$box-shadow;
     display: flex;
     justify-content: center;
     align-items: center;

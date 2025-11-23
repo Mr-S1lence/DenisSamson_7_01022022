@@ -1,3 +1,5 @@
+@use '../utils/_variables' as vars;
+
 .form-container {
   ul {
     display: flex;
@@ -44,7 +46,7 @@
     width: 8rem;
     height: 2rem;
     border-radius: 2rem;
-    background-color: $color-2;
+    background-color: vars.$color-2;
     cursor: pointer;
   }
 }

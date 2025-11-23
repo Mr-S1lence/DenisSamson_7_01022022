@@ -1,8 +1,7 @@
-//const http = require("http");
 import http from "http";
-// const app = require("./app");
+
 import app from "./app.js";
-// require("dotenv").config({ path: "./config/.env" });
+
 import dotenv from "dotenv";
 dotenv.config({ path: "./config/.env" });
 
@@ -52,7 +51,8 @@ server.on("error", errorHandler);
 //sur lequel le serveur s'exécute dans la console.
 server.on("listening", () => {
   const address = server.address();
-  const bind = typeof address === "string" ? "pipe " + address : "port " + address.port;
+  const bind =
+    typeof address === "string" ? "pipe " + address : "port " + address.port;
   console.log("Listening on " + bind);
 });
 

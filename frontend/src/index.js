@@ -9,7 +9,7 @@ import { applyMiddleware, createStore } from "redux";
 // import { default as thunk } from 'redux-thunk';
 import {thunk} from 'redux-thunk';
 import rootReducer from "./reducers";
-import { getUsers } from "./actions/users.actions";
+import { getUsers } from "./actions/users.actions.jsx";
 //dev tools
 import { composeWithDevTools } from "redux-devtools-extension";
 

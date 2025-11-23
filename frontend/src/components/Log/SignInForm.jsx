@@ -3,35 +3,39 @@ import { useState } from "react";
 import axios from "axios";
 
 const SignInForm = () => {
+  console.log("SignInForm MONTÉ");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = (e) => {
     e.preventDefault();
+    console.log("HANDLE LOGIN TRIGGERED"); // <-- test
     const emailError = document.querySelector(".email.error");
     const passwordError = document.querySelector(".password.error");
-
+    console.log(email, password);
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_API_URL}api/user/login`,
+      url: `${import.meta.env.VITE_API_URL}/api/user/login`,
       withCredentials: true,
       data: {
         email,
         password,
       },
-    }).then((res) => {
-      if (res.data.errors) {
+    })
+      .then((res) => {
+        if (res.data.errors) {
           emailError.innerHTML = res.data.errors.email;
           passwordError.innerHTML = res.data.errors.password;
-      } else {
-          window.location = '/';
-      }
-    }).catch((err) => {
+        } else {
+          window.location = "/";
+        }
+      })
+      .catch((err) => {
         console.log(err);
-    })
+      });
   };
 
   return (
-    <form action="" onSubmit={handleLogin} id="sign-up-form">
+    <form onSubmit={handleLogin} id="sign-in-form" noValidate>
       <label htmlFor="email">Email</label>
       <br />
       <input

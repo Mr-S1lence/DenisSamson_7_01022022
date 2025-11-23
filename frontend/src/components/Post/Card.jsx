@@ -6,7 +6,7 @@ import {
   faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { dateParser, isEmpty } from "./../Utils";
+import { dateParser, isEmpty } from "../Utils";
 import LikeButton from "./LikeButton";
 import { updatePost } from "../../actions/post.actions";
 import DeleteCard from "./DeleteCard";

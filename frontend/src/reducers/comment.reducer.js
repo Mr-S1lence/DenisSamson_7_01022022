@@ -2,7 +2,7 @@ import {
   GET_COMMENTS,
   EDIT_COMMENT,
   DELETE_COMMENT,
-} from "../actions/comment.actions";
+} from "../actions/comment.actions.jsx";
 
 const initialState = {};
 
